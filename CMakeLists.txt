@@ -34,8 +34,8 @@ include_directories(${Qt5Widgets_INCLUDE_DIRS})
 include_directories(${Qt5Gui_INCLUDE_DIRS})
 
 #C++ code
-file(GLOB HEADER_FILES "src/*.h")
-file(GLOB SOURCE_FILES "src/*.cpp")
+file(GLOB HEADER_FILES "src/library/*.h")
+file(GLOB SOURCE_FILES "src/*.cpp src/library/*.cpp")
 #DELETE ME:
 #set(SOURCE_FILES src/main.cpp src/player.cpp src/mediapp.cpp)
 #set(HEADER_FILES src/player.h src/mediapp.h)
