@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QPainter>
+#include "colors.h"
 
 #define AUTOSYS_DISPLAY_POSX 1500
 #define AUTOSYS_DISPLAY_POSY 50

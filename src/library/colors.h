@@ -2,23 +2,23 @@
 #define COLORS_H
 #include <QColor>
 
-QColor color_window_bk (14, 14, 14);
-QColor color_widget_bk (10, 10, 10);
+#define color_window_bk  QColor (14, 14, 14)
+#define color_widget_bk  QColor (10, 10, 10)
 
-QColor serious_red(180, 19, 26)
-QColor serious_green (82, 190, 91);
+#define serious_red      QColor (180, 19, 26)
+#define serious_green    QColor (82, 190, 91)
 
-QColor bright_green (45, 229, 171);
-QColor bright_yellow (255, 204, 0);
-QColor bright_red (255, 59, 48);
-QColor bright_blue (0, 149, 255);
+#define bright_green     QColor (45, 229, 171)
+#define bright_yellow    QColor (255, 204, 0)
+#define bright_red       QColor (255, 59, 48)
+#define bright_blue      QColor (0, 149, 255)
 
-QColor pale_lightblue (90, 200, 250);
-QColor pale_red (252, 45, 85);
-QColor pale_violet (135, 135, 255);
+#define pale_lightblue   QColor (90, 200, 250)
+#define pale_red         QColor (252, 45, 85)
+#define pale_violet      QColor (135, 135, 255)
 
-QColor indicator_green (53, 203, 75);
-QColor indicator_yellow (253, 189, 65);
-QColor indicator_red (252, 98, 93);
+#define indicator_green  QColor (53, 203, 75)
+#define indicator_yellow QColor (253, 189, 65)
+#define indicator_red    QColor (252, 98, 93)
 
 #endif // COLORS_H

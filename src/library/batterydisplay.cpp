@@ -1,5 +1,6 @@
 #include "batterydisplay.h"
 
+
 #define BAT_DISPLAY_OFFSET_LEFT 20
 #define BAT_DISPLAY_OFFSET_UP 22
 #define BAT_DISPLAY_OFFSET_RIGHT 20
@@ -30,7 +31,7 @@ void BatteryDisplay::paintEvent(QPaintEvent *)
 	m_gradient.setColorAt(1.0, QColor(10, 10, 10, 255));
 	painter.fillRect(QRect(0, 0, BAT_DISPLAY_WIDTH, BAT_DISPLAY_HEIGHT), m_gradient);
 
-	painter.setPen(QColor(80, 182, 193));
+	painter.setPen(pale_lightblue);
 	painter.drawText(1, 17, "Batteries");
 
 	painter.setBrush(QColor(0,0,0,0));

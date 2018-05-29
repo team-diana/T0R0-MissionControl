@@ -6,6 +6,7 @@
 
 #include "batteryindicator.h"
 #include "batterypanel.h"
+#include "colors.h"
 
 #define BAT_DISPLAY_POSX 1500
 #define BAT_DISPLAY_POSY 370
