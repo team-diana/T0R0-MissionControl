@@ -12,7 +12,7 @@ cd /<path>/build
 cmake ..
 make gui_missioncontrol
 ```
-## Launch - fron command Line
+## Launch - from command Line
 ```
 cd /<path>/build/bin
 ./gui_missioncontrol
