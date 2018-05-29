@@ -1,9 +1,6 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-/*
-#include "library/joystick.h"
-#include "library/joypad.h"
 #include "library/rovershow.h"
 #include "library/startbutton.h"
 #include "library/batteryindicator.h"
@@ -11,10 +8,12 @@
 #include "library/batterydisplay.h"
 #include "library/statusdisplay.h"
 #include "library/imagebutton.h"
-#include "keypress.h"
-*/
+#include "library/autosysdisplay.h"
+#include "library/radiodisplay.h"
+#include "library/allsystemsdisplay.h"
+
 #include <QLabel>
-#include <QKeyEvent>
+
 #include <QString>
 
 #define XPOS_BATTGROUP 0
@@ -22,30 +21,30 @@
 
 class Window : public QWidget
 {
-  	Q_OBJECT
+	Q_OBJECT
 
 public:
     explicit Window(QRect screen, QWidget *parent = 0);
-    ~Window();
 
 public slots:
 
 protected:
-  	void keyPressEvent(QKeyEvent *e);
+	//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
 
 private:
     bool connected;
 
     // Custom elements
-/*
-  			StartButton *start_button;
+	AllSysDisplay *allsysdisplay;
+    StartButton *start_button;
     RoverShow *rover;
     BatteryPanel *batterypanel1;
-  	BatteryDisplay *batterydisplay;
-  	StatusDisplay *statusdisplay;
-  	*/
+	BatteryDisplay *batterydisplay;
+	StatusDisplay *statusdisplay;
     QLabel *pixlabel;
-  	//KeyPress *key_press_event;
+	AutoSysDisplay *autosysdisplay;
+	RadioDisplay *radiodisplay;
+	//KeyPress *key_press_event;
 };
 
 #endif // WINDOW_H

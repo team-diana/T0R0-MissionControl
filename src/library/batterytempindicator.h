@@ -10,7 +10,7 @@
 #define WARNING 1
 #define ALERT 2
 
-#define BAT_TEMP_WIDTH 140
+#define BAT_TEMP_WIDTH 200
 #define BAT_TEMP_HEIGHT 20
 
 class BatteryTemperatureIndicator : public QWidget

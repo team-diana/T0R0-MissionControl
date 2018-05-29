@@ -7,18 +7,18 @@
 
 int main(int argc, char **argv)
 {
-  	QApplication app(argc, argv);
+	QApplication app(argc, argv);
 
-  	QDesktopWidget *desktop = app.desktop();
+	QDesktopWidget *desktop = app.desktop();
 
-  	Window window(desktop->screenGeometry());
-  	//window.showMaximized();
-  	//window.showNormal();
-	 	window.showFullScreen();
-	 	//window.setFixedSize(500,500);
+	Window window(desktop->screenGeometry());
+	//window.showMaximized();
+	//window.showNormal();
+ 	window.showFullScreen();
+ 	//window.setFixedSize(500,500);
 
-  	qDebug() << "\nStart successful\n";
+	qDebug() << "\nStart successful\n";
 
 
-  	return app.exec();
+	return app.exec();
 }

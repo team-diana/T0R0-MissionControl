@@ -8,9 +8,9 @@
 #include "batterypanel.h"
 
 #define BAT_DISPLAY_POSX 1500
-#define BAT_DISPLAY_POSY 300
-#define BAT_DISPLAY_WIDTH 362
-#define BAT_DISPLAY_HEIGHT 350
+#define BAT_DISPLAY_POSY 370
+#define BAT_DISPLAY_WIDTH 334
+#define BAT_DISPLAY_HEIGHT 285
 
 #define COL_SPACER 10
 #define ROW_SPACER 10

@@ -1,6 +1,7 @@
 #include "batterypanel.h"
 
-#define BAT_PANEL_OFFSET_LEFT ((BAT_PANEL_WIDTH - BAT_WIDTH) / 2)
+//#define BAT_PANEL_OFFSET_LEFT ((BAT_PANEL_WIDTH - BAT_WIDTH) / 2)
+#define BAT_PANEL_OFFSET_LEFT 0
 #define BAT_PANEL_OFFSET_RIGHT BAT_WIDTH
 //#define BAT_PANEL_OFFSET_UP ((BAT_PANEL_HEIGHT - BAT_HEIGHT) / 2)
 #define BAT_PANEL_OFFSET_UP 15
@@ -24,7 +25,7 @@ void BatteryPanel::paintEvent(QPaintEvent *)
     battery->show();
 
 	temperature = new BatteryTemperatureIndicator(this);
-    temperature->setGeometry(BAT_PANEL_OFFSET_LEFT, BAT_PANEL_OFFSET_UP, BAT_PANEL_OFFSET_RIGHT, BAT_PANEL_OFFSET_DOWN);
+    temperature->setGeometry(BAT_PANEL_OFFSET_LEFT + BAT_PANEL_OFFSET_RIGHT - 45, BAT_PANEL_OFFSET_UP, BAT_TEMP_WIDTH, BAT_TEMP_HEIGHT);
     temperature->show();
 
     battery->setCharge(charge);

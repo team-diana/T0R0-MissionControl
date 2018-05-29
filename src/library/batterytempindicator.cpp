@@ -9,9 +9,25 @@ BatteryTemperatureIndicator::BatteryTemperatureIndicator(QWidget *parent) : QWid
 
 void BatteryTemperatureIndicator::paintEvent(QPaintEvent *)
 {
-	QPainter painter;
 
-	//painter.drawText(QRect(0, 0, BAT_TEMP_WIDTH, BAT_TEMP_HEIGHT), Qt::AlignCenter, 35.2);
+	QPainter painter(this);
+	painter.setPen(QColor(255,0,0, 255));
+	painter.setBrush(QColor(255,0,0, 255));
+	float temperature = 25.4;
+	float ampere = 11.4;
+
+	QString temperatureValueString;
+	temperatureValueString.sprintf("%3.1f °C", temperature);
+	painter.drawText(QRect(0, 0, BAT_TEMP_WIDTH, BAT_TEMP_HEIGHT), Qt::AlignCenter, temperatureValueString);
+
+	painter.setPen(QColor(255,255,255, 255));
+	painter.drawText(QRect(38, 0, BAT_TEMP_WIDTH, BAT_TEMP_HEIGHT), Qt::AlignCenter, "|");
+
+	QString ampereValueString;
+	ampereValueString.sprintf("%4.1f A", ampere);
+	painter.setPen(QColor(205,150,10, 255));
+	painter.drawText(QRect(73, 0, BAT_TEMP_WIDTH, BAT_TEMP_HEIGHT), Qt::AlignCenter, ampereValueString);
+
 }
 
 /*
