@@ -24,24 +24,25 @@ class Window : public QWidget
 	Q_OBJECT
 
 public:
-    explicit Window(QRect screen, QWidget *parent = 0);
+  explicit Window(QRect screen, QWidget *parent = 0);
+	~Window();
 
 public slots:
 
 protected:
-	//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
+	void keyPressEvent(QKeyEvent *e);
 
 private:
-    bool connected;
+  bool connected;
 
     // Custom elements
 	AllSysDisplay *allsysdisplay;
-    StartButton *start_button;
-    RoverShow *rover;
-    BatteryPanel *batterypanel1;
+  StartButton *start_button;
+  RoverShow *rover;
+  BatteryPanel *batterypanel1;
 	BatteryDisplay *batterydisplay;
 	StatusDisplay *statusdisplay;
-    QLabel *pixlabel;
+  QLabel *pixlabel;
 	AutoSysDisplay *autosysdisplay;
 	RadioDisplay *radiodisplay;
 	//KeyPress *key_press_event;

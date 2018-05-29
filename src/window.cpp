@@ -1,5 +1,6 @@
 #include "window.h"
 #include <QKeyEvent>
+#include <QCoreApplication>
 #include <QDebug>
 
 
@@ -63,6 +64,22 @@ Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
 	//key_press_event = new KeyPress(this);
 	//key_press_event->show();
 
+}
+
+Window::~Window(){
+}
+
+void Window::keyPressEvent (QKeyEvent *k) {
+	switch ( tolower(char(k->key())) ) {
+	        case 'r':                               // reload
+	            qDebug("Pressed R");//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
+	            update();
+	            break;
+	        case 'q':                               // quit//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
+              qDebug("Pressed Q: Quitting application");
+              QCoreApplication::quit();
+	            break;
+	    }
 }
 
 /*
