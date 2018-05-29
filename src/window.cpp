@@ -66,7 +66,8 @@ void Window::keyPressEvent (QKeyEvent *k) {
 	            update();
 	            break;
 	        case 'q':                               // quit//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
-	            QCoreApplication::quit();
+              qDebug("Pressed Q: Quitting application");
+              QCoreApplication::quit();
 	            break;
 	    }
 }
