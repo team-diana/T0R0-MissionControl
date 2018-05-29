@@ -35,12 +35,8 @@ Makefile*
 
 
 # Custom
-Makefile
-
 \.atom-build\.js
 
 build/*
 build/*/
-!/build/bin/
-
-build/bin/
+/build/bin/
