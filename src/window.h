@@ -35,7 +35,7 @@ protected:
 private:
   bool connected;
 
-    // Custom elements
+  // Custom elements
 	AllSysDisplay *allsysdisplay;
   StartButton *start_button;
   RoverShow *rover;
@@ -45,7 +45,7 @@ private:
   QLabel *pixlabel;
 	AutoSysDisplay *autosysdisplay;
 	RadioDisplay *radiodisplay;
-	//KeyPress *key_press_event;
+
 };
 
 #endif // WINDOW_H
