@@ -23,13 +23,13 @@ Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
 
 	// Show Rover Image at the center of the window
     QLabel *pixlabel = new QLabel(this);
-    QPixmap pixrover("src/t0r0_driving_gui/Images/rover_up-230x374.png");
+    QPixmap pixrover(":/Images/rover_up-230x374.png");
 	pixlabel->setPixmap(pixrover.scaled(ROVIMG_WIDTH, ROVIMG_HEIGHT, Qt::KeepAspectRatio));
 	pixlabel->setGeometry( (this->width() - ROVIMG_WIDTH) /2, (this->height() - ROVIMG_HEIGHT) /2, ROVIMG_WIDTH, ROVIMG_HEIGHT );
 
 	// Show Team D.I.A.N.A. logo at bottom-right
 	QLabel *pixlogo = new QLabel(this);
-    QPixmap pixmaplogo("src/t0r0_driving_gui/Images/diana-logo-193x90.png");
+    QPixmap pixmaplogo(":/Images/diana-logo-193x90.png");
 	pixlogo->setPixmap(pixmaplogo.scaled(193, 90, Qt::KeepAspectRatio));
 	pixlogo->setGeometry( 50, this->height() - 120, 193, 90 );
 
