@@ -1,4 +1,5 @@
 #include "window.h"
+#include <QCoreApplication>
 #include <QKeyEvent>
 #include <QDebug>
 
@@ -19,7 +20,6 @@ Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
   	pal.setColor(QPalette::Background, QColor(14,14,14,255));
     this->setAutoFillBackground(true);
     this->setPalette(pal);
-
 
   	// Show Rover Image at the center of the window
     QLabel *pixlabel = new QLabel(this);
@@ -54,6 +54,21 @@ Window::Window(QRect screen, QWidget *parent) : QWidget(parent)
   	//key_press_event = new KeyPress(this);
   	//key_press_event->show();
 
+}
+
+Window::~Window(){
+}
+
+void Window::keyPressEvent (QKeyEvent *k) {
+	switch ( tolower(char(k->key())) ) {
+	        case 'r':                               // reload
+	            qDebug("Pressed R");//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
+	            update();
+	            break;
+	        case 'q':                               // quit//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
+	            QCoreApplication::quit();
+	            break;
+	    }
 }
 
 /*

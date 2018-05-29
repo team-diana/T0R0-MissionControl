@@ -14,7 +14,7 @@
 #include "keypress.h"
 */
 #include <QLabel>
-
+#include <QKeyEvent>
 #include <QString>
 
 #define XPOS_BATTGROUP 0
@@ -26,11 +26,12 @@ class Window : public QWidget
 
 public:
     explicit Window(QRect screen, QWidget *parent = 0);
+    ~Window();
 
 public slots:
 
 protected:
-  	//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
+  	void keyPressEvent(QKeyEvent *e);
 
 private:
     bool connected;
