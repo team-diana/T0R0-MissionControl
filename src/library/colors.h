@@ -17,8 +17,12 @@
 #define pale_red         QColor (252, 45, 85)
 #define pale_violet      QColor (135, 135, 255)
 
-#define indicator_green  QColor (53, 203, 75)
-#define indicator_yellow QColor (253, 189, 65)
-#define indicator_red    QColor (252, 98, 93)
+#define status_green  QColor (53, 203, 75)
+#define status_yellow QColor (253, 189, 65)
+#define status_red    QColor (252, 98, 93)
+
+#define indicator_green  QColor (40, 246, 45)
+#define indicator_yellow QColor (254, 202, 47)
+#define indicator_red    QColor (200, 0, 0)
 
 #endif // COLORS_H

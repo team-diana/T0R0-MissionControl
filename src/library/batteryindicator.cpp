@@ -1,4 +1,5 @@
 #include "batteryindicator.h"
+#include "colors.h"
 
 BatteryIndicator::BatteryIndicator(QWidget *parent) : QWidget(parent)
 {
@@ -8,7 +9,7 @@ BatteryIndicator::BatteryIndicator(QWidget *parent) : QWidget(parent)
 
 void BatteryIndicator::paintEvent(QPaintEvent *)
 {
-    QPainter painter(this);
+  QPainter painter(this);
 	QFont font;
 	// Draw background indicator
 	painter.setRenderHint(QPainter::Antialiasing);
@@ -28,47 +29,51 @@ void BatteryIndicator::paintEvent(QPaintEvent *)
 	painter.drawPath(path3);
 
 	painter.setBrush(QColor(45, 45, 45));
-    //painter.drawRect(0, 0, BAT_WIDTH-1, BAT_HEIGHT-1);
+  //painter.drawRect(0, 0, BAT_WIDTH-1, BAT_HEIGHT-1);
 
-    // Battery charge colors
-    //QColor fully(0, 227, 20);
+  // Battery charge colors
+  /*
 	QColor fully(40, 246, 45);
-	//QColor fully(101, 191, 91);
-    QColor good(113, 217, 45);
-    //QColor med(200, 200, 0);
+  QColor good(113, 217, 45);
 	QColor med(254, 202, 47);
-    QColor low(200, 0, 0);
+  QColor low(200, 0, 0);
+  */
+
+  QColor fully = indicator_green;
+  QColor good = indicator_green;
+	QColor med = indicator_yellow;
+  QColor low = indicator_red;
 
 
     // Draw battery charge
 	QColor colorIndicator;
-    if(charge > GOODCHARGE)
-    {
-        painter.setPen(fully);
-        painter.setBrush(fully);
+  if(charge > GOODCHARGE)
+  {
+    painter.setPen(fully);
+    painter.setBrush(fully);
 		colorIndicator = fully;
-    }
-    else if(charge > MEDCHARGE)
-    {
-        painter.setPen(good);
-        painter.setBrush(good);
+  }
+  else if(charge > MEDCHARGE)
+  {
+    painter.setPen(good);
+    painter.setBrush(good);
 		colorIndicator = good;
-    }
-    else if(charge > LOWCHARGE)
-    {
-        painter.setPen(med);
-        painter.setBrush(med);
+  }
+  else if(charge > LOWCHARGE)
+  {
+    painter.setPen(med);
+    painter.setBrush(med);
 		colorIndicator = med;
-    }
-    else
-    {
-        painter.setPen(low);
-        painter.setBrush(low);
+  }
+  else
+  {
+    painter.setPen(low);
+    painter.setBrush(low);
 		colorIndicator = low;
-    }
+  }
 
-    int barPerc = charge * (BAT_WIDTH-1) / 100;
-    //painter.drawRect(1, 1, barPerc, BAT_HEIGHT-1);
+  int barPerc = charge * (BAT_WIDTH-1) / 100;
+  //painter.drawRect(1, 1, barPerc, BAT_HEIGHT-1);
 
 	// Draw Battery bar-graph
 	QPainterPath path2;
@@ -79,17 +84,17 @@ void BatteryIndicator::paintEvent(QPaintEvent *)
 	painter.drawPath(path2);
 
 	// Show Text Percentage of charge
-    painter.setPen(QColor(255, 255, 255));
+  painter.setPen(QColor(255, 255, 255));
 	painter.setBrush(QColor(0, 0, 0));
 
 	int fontSize = BAT_HEIGHT-4;
 	font.setPixelSize(fontSize);
 	painter.setFont(font);
 
-    int fontSizeCorrectionY =  -fontSize;
+  int fontSizeCorrectionY =  -fontSize;
 	QString percentageStr;
 	percentageStr.sprintf("%3d%%", charge);
-    painter.drawText(QRect(0, 0, BAT_WIDTH, BAT_HEIGHT), Qt::AlignCenter, percentageStr);
+  painter.drawText(QRect(0, 0, BAT_WIDTH, BAT_HEIGHT), Qt::AlignCenter, percentageStr);
 	//pen.setWidth(2);
 	//pen.setColor(Qt::black);
 	//painter.setPen(pen);
@@ -99,12 +104,12 @@ void BatteryIndicator::paintEvent(QPaintEvent *)
 
 void BatteryIndicator::setCharge(int charge)
 {
-    this->charge = charge;
-    this->update();
+  this->charge = charge;
+  this->update();
 }
 
 void BatteryIndicator::setInUse(bool status)
 {
-    in_use = true;
-    this->update();
+  in_use = true;
+  this->update();
 }
