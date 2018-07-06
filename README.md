@@ -1,19 +1,6 @@
 # T0-R0 Mission Control GUI
+A GUI to display all most important data from T0-R0 rover
 
-## Compile and Lauch - with Makefile
-Inside the main project folder launch
-```
-make
-```
-
-## Compile - from command line
-```
-cd /<path>/build
-cmake ..
-make gui_missioncontrol
-```
-## Launch - from command Line
-```
-cd /<path>/build/bin
-./gui_missioncontrol
+## Compile and Run
+Directly inside of QtCreator
 ```
