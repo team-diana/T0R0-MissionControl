@@ -28,7 +28,8 @@ SOURCES += \
         *.cpp
 
 HEADERS += \
-        *.h
+        *.h \
+    config.h
 
 FORMS += \
         mainwindow.ui
