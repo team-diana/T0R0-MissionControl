@@ -41,10 +41,13 @@ void StartButton::paintEvent(QPaintEvent *)
 
     painter.setPen(Qt::SolidLine);
 	QString str;
-    if(rover_on)
+    if(rover_on) {
         str = "Lock Controls";
-    else
+    }
+    else {
 		str = "Un-Lock Controls";
+    }
+
 		painter.setPen(QColor(255,255,255,255));
 		painter.drawText(QRect( 0, (this->height() / 2)+5, this->width(), (this->height()/2)-5 ), Qt::AlignHCenter, str);
         //painter.drawText((this->width() / 2) - 20, this->height() - 20, "Connect");
