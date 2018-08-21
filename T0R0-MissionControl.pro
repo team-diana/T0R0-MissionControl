@@ -22,6 +22,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+# MQTT
+#QT += mqtt
+INCLUDEPATH += lib/qmqtt/src/mqtt
+LIBS += -L"lib/qmqtt/src/mqtt" -lqmqtt
+
 RESOURCES     += resources.qrc
 
 SOURCES += \
