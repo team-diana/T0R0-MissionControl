@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network mqtt
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,8 +24,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 # MQTT
 #QT += mqtt
-INCLUDEPATH += lib/qmqtt/src/mqtt
-LIBS += -L"lib/qmqtt/src/mqtt" -lqmqtt
+#INCLUDEPATH += lib/qmqtt/src/mqtt
+#LIBS += -L"lib/qmqtt/src/mqtt" -lqmqtt
+#QT += network
 #QT += qmqtt
 
 RESOURCES     += resources.qrc
