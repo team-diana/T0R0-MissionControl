@@ -4,29 +4,22 @@
 #include <QtCore/QDateTime>
 #include <QtWidgets/QMessageBox>
 
+#include <unistd.h>
+
 MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
 {
     const QMqttTopicName battopic (QString("testbat"));
 
     m_client = new QMqttClient(this);
-    m_client->setHostname(MQTT_BROKER_IP);
+    m_client->setHostname("192.168.1.164");
     m_client->setPort(MQTT_BROKER_PORT);
     m_client->connectToHost();
 
-    connect(m_client, &QMqttClient::connected, this, [](){
-        qDebug() << "MQTT CONNESSO";
-    });
+    connect(m_client, &QMqttClient::connected, this, &MqttHarbinger::testMqtt);
 
-    QString batterytopicstring ("testbat");
-    auto subscription = m_client->subscribe(batterytopicstring);
-    if (!subscription) {
-            QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not subscribe. Is there a valid connection?"));
-            return;
-    }
+    usleep(2000);
 
-    m_client->publish(batterytopicstring, batterytopicstring.toUtf8());
-    if (m_client->publish(batterytopicstring, batterytopicstring.toUtf8()) == -1) qDebug() << "MQTT ERRORE PUBBLICAZIONE";
-    else qDebug() << "MQTT PUBLISHED";
+
 
     //connect(sub.data(), &QMqttSubscription::messageReceived, [&](QMqttMessage msg) {
     //qDebug() << "New Message:" << msg.payload();
@@ -55,5 +48,17 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
 
 }
 
+void MqttHarbinger::testMqtt () {
+    qDebug() << "MQTT CONNESSO";
+    QString batterytopicstring ("testbat");
+    auto subscription = m_client->subscribe(batterytopicstring);
+    if (!subscription) {
+            //QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not subscribe. Is there a valid connection?"));
+            //return;
+    }
 
+    m_client->publish(batterytopicstring, batterytopicstring.toUtf8());
+    if (m_client->publish(batterytopicstring, batterytopicstring.toUtf8()) == -1) qDebug() << "MQTT ERRORE PUBBLICAZIONE";
+    else qDebug() << "MQTT PUBLISHED";
+}
 

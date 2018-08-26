@@ -11,6 +11,7 @@ class MqttHarbinger : public QWidget
 
 public:
     explicit MqttHarbinger(QWidget *parent = nullptr);
+    void testMqtt();
 
 signals:
     void mqttBatteryEvent (QString topic, QString message);
