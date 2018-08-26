@@ -6,6 +6,7 @@
 
 MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
 {
+    const QMqttTopicName battopic (QString("testbat"));
 
     m_client = new QMqttClient(this);
     m_client->setHostname(MQTT_BROKER_IP);
@@ -16,11 +17,16 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
         qDebug() << "MQTT CONNESSO";
     });
 
-    auto subscription = m_client->subscribe(QString("testbat"));
+    QString batterytopicstring ("testbat");
+    auto subscription = m_client->subscribe(batterytopicstring);
     if (!subscription) {
             QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not subscribe. Is there a valid connection?"));
             return;
     }
+
+    m_client->publish(batterytopicstring, batterytopicstring.toUtf8());
+    if (m_client->publish(batterytopicstring, batterytopicstring.toUtf8()) == -1) qDebug() << "MQTT ERRORE PUBBLICAZIONE";
+    else qDebug() << "MQTT PUBLISHED";
 
     //connect(sub.data(), &QMqttSubscription::messageReceived, [&](QMqttMessage msg) {
     //qDebug() << "New Message:" << msg.payload();
@@ -33,7 +39,7 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
             qDebug() << "Could not subscribe. Is there a valid connection?";
             return;
         }
-
+*/
 
     connect(m_client, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
             const QString content = QDateTime::currentDateTime().toString()
@@ -46,7 +52,7 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
 
             if (topic.name() == "testbat") emit mqttBatteryEvent (topic.name(), message);
     });
-    */
+
 }
 
 
