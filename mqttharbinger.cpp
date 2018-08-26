@@ -15,24 +15,8 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
     m_client->setPort(MQTT_BROKER_PORT);
     m_client->connectToHost();
 
-    connect(m_client, &QMqttClient::connected, this, &MqttHarbinger::testMqtt);
-
     usleep(2000);
-
-
-
-    //connect(sub.data(), &QMqttSubscription::messageReceived, [&](QMqttMessage msg) {
-    //qDebug() << "New Message:" << msg.payload();
-    //});
-
-
-    /*
-    auto subscription = m_client->subscribe(QString("testbat"));
-        if (!subscription) {
-            qDebug() << "Could not subscribe. Is there a valid connection?";
-            return;
-        }
-*/
+    connect(m_client, &QMqttClient::connected, this, &MqttHarbinger::testMqtt);
 
     connect(m_client, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
             const QString content = QDateTime::currentDateTime().toString()
@@ -53,12 +37,13 @@ void MqttHarbinger::testMqtt () {
     QString batterytopicstring ("testbat");
     auto subscription = m_client->subscribe(batterytopicstring);
     if (!subscription) {
+        qDebug() << "Error: MQTT subscription";
             //QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not subscribe. Is there a valid connection?"));
             //return;
     }
 
     m_client->publish(batterytopicstring, batterytopicstring.toUtf8());
-    if (m_client->publish(batterytopicstring, batterytopicstring.toUtf8()) == -1) qDebug() << "MQTT ERRORE PUBBLICAZIONE";
+    if (m_client->publish(batterytopicstring, batterytopicstring.toUtf8()) == -1) qDebug() << "MQTT PUBLISH ERROR";
     else qDebug() << "MQTT PUBLISHED";
 }
 
