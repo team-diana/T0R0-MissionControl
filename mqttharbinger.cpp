@@ -27,23 +27,33 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
                         + QLatin1Char('\n');
             qDebug() << content;
 
-            if (topic.name() == "testbat") emit mqttBatteryEvent (topic.name(), message);
+            QRegExp rx("(\\/|\\t)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+            QStringList query = topic.name().split(rx);
+            qDebug() << query;
+            if (query.at(0) == "battery") emit mqttBatteryEvent (query.at(1).toInt(), query.at(2), message);
     });
 
 }
 
 void MqttHarbinger::testMqtt () {
     qDebug() << "MQTT CONNESSO";
-    QString batterytopicstring ("testbat");
+    QString batterytopicstring ("testtopic");
     auto subscription = m_client->subscribe(batterytopicstring);
     if (!subscription) {
         qDebug() << "Error: MQTT subscription";
-            //QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not subscribe. Is there a valid connection?"));
-            //return;
     }
+
+    batterySubscription();
 
     m_client->publish(batterytopicstring, batterytopicstring.toUtf8());
     if (m_client->publish(batterytopicstring, batterytopicstring.toUtf8()) == -1) qDebug() << "MQTT PUBLISH ERROR";
     else qDebug() << "MQTT PUBLISHED";
 }
 
+void MqttHarbinger::batterySubscription () {
+    QString batterytopicstring ("battery/1/voltage");
+    auto subscription = m_client->subscribe(batterytopicstring);
+    if (!subscription) {
+        qDebug() << "Error: MQTT subscription";
+    } else qDebug() << "MQTT: battery subscribed";
+}
