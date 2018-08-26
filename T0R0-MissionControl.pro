@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #QT += mqtt
 INCLUDEPATH += lib/qmqtt/src/mqtt
 LIBS += -L"lib/qmqtt/src/mqtt" -lqmqtt
+#QT += qmqtt
 
 RESOURCES     += resources.qrc
 

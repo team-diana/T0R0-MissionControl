@@ -1,4 +1,5 @@
 #include "batterydisplay.h"
+#include <qmqtt.h>
 
 
 #define BAT_DISPLAY_OFFSET_LEFT 20
@@ -14,7 +15,15 @@
 
 BatteryDisplay::BatteryDisplay(QWidget *parent) : QWidget(parent)
 {
+    QMqttClient subscriber;
+    subscriber.setHostname(“some.brokerlocation.com”);
+    subscriber.setPort(1883);
+    subscriber.connectToHost();
 
+    QSharedPointer<QMqttSubscription> sub = subscriber.subscribe(“sensor_1/#”, qosLevel);
+    connect(sub.data(), &QMqttSubscription::messageReceived, [&](QMqttMessage msg) {
+    qDebug() << “New Message:” << msg.payload();
+    });
 }
 
 
