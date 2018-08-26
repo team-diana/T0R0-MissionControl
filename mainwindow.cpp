@@ -35,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     connected = false;
 
+    m_mqttHarbinger = new MqttHarbinger(this);
+
     // Custom elements
     start_button = new StartButton(this);
     start_button->setGeometry(this->width() / 2 - 100, this->height() - 100, 200, 100);

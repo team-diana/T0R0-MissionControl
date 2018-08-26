@@ -27,6 +27,10 @@
 
 ///////////
 
+//* MQTT *//
+#define MQTT_BROKER_IP "192.168.1.139"
+#define MQTT_BROKER_PORT 1883
+///////////
 
 
 #endif // CONFIG_H

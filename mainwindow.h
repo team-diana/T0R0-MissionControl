@@ -3,6 +3,8 @@
 
 #include "config.h"
 
+#include "mqttharbinger.h"
+
 #include "rovershow.h"
 #include "startbutton.h"
 #include "batteryindicator.h"
@@ -26,7 +28,7 @@ class MainWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 public slots:
@@ -36,6 +38,8 @@ protected:
 
 private:
     bool connected;
+
+    MqttHarbinger *m_mqttHarbinger;
 
     // Custom elements
     AllSysDisplay *allsysdisplay;
