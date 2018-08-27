@@ -15,7 +15,28 @@
 
 BatteryDisplay::BatteryDisplay(QWidget *parent) : QWidget(parent)
 {
+    pbattery1 = new BatteryPanel(this);
+    pbattery1->setGeometry(BAT_DISPLAY_OFFSET_LEFT, GROUP_PANEL_OFFSET_UP, BAT_PANEL_WIDTH-(PANEL_ORIZONTAL_SPACER/2), BAT_PANEL_HEIGHT);
 
+    pbattery2 = new BatteryPanel(this);
+    pbattery2->setGeometry(BAT_DISPLAY_OFFSET_LEFT, GROUP_PANEL_OFFSET_UP+1*(BAT_PANEL_HEIGHT+PANEL_VERTICAL_SPACER), BAT_PANEL_WIDTH-(PANEL_ORIZONTAL_SPACER/2), BAT_PANEL_HEIGHT);
+
+    pbattery3 = new BatteryPanel(this);
+    pbattery3->setGeometry(BAT_DISPLAY_OFFSET_LEFT, GROUP_PANEL_OFFSET_UP+2*(BAT_PANEL_HEIGHT+PANEL_VERTICAL_SPACER), BAT_PANEL_WIDTH-(PANEL_ORIZONTAL_SPACER/2), BAT_PANEL_HEIGHT);
+
+    pbattery4 = new BatteryPanel(this);
+    pbattery4->setGeometry(BAT_DISPLAY_OFFSET_LEFT, GROUP_PANEL_OFFSET_UP+3*(BAT_PANEL_HEIGHT+PANEL_VERTICAL_SPACER), BAT_PANEL_WIDTH-(PANEL_ORIZONTAL_SPACER/2), BAT_PANEL_HEIGHT);
+
+    pbattery5 = new BatteryPanel(this);
+    pbattery5->setGeometry(BAT_DISPLAY_OFFSET_LEFT, GROUP_PANEL_OFFSET_UP+4*(BAT_PANEL_HEIGHT+PANEL_VERTICAL_SPACER), BAT_PANEL_WIDTH-(PANEL_ORIZONTAL_SPACER/2), BAT_PANEL_HEIGHT);
+
+    /* TEST
+    pbattery1->setCharge(9);
+    pbattery2->setCharge(25);
+    pbattery3->setCharge(46);
+    pbattery4->setCharge(67);
+    pbattery5->setCharge(88);
+    */
 }
 
 
@@ -38,32 +59,17 @@ void BatteryDisplay::paintEvent(QPaintEvent *)
 	painter.setBrush(QColor(0,0,0,0));
 	painter.drawRect(0, 0, BAT_DISPLAY_WIDTH, BAT_DISPLAY_HEIGHT);
 
+    pbattery1->show();
+    pbattery2->show();
+    pbattery3->show();
+    pbattery4->show();
+    pbattery5->show();
+
+
+
+
 	//int panelRightExtreme = BAT_PANEL_WIDTH + BAT_DISPLAY_OFFSET_LEFT + BAT_DISPLAY_OFFSET_RIGHT;
-	pbattery1 = new BatteryPanel(this);
-	pbattery1->setGeometry(BAT_DISPLAY_OFFSET_LEFT, GROUP_PANEL_OFFSET_UP, BAT_PANEL_WIDTH-(PANEL_ORIZONTAL_SPACER/2), BAT_PANEL_HEIGHT);
-	pbattery1->show();
 
-	pbattery2 = new BatteryPanel(this);
-	pbattery2->setGeometry(BAT_DISPLAY_OFFSET_LEFT, GROUP_PANEL_OFFSET_UP+1*(BAT_PANEL_HEIGHT+PANEL_VERTICAL_SPACER), BAT_PANEL_WIDTH-(PANEL_ORIZONTAL_SPACER/2), BAT_PANEL_HEIGHT);
-	pbattery2->show();
-
-	pbattery3 = new BatteryPanel(this);
-	pbattery3->setGeometry(BAT_DISPLAY_OFFSET_LEFT, GROUP_PANEL_OFFSET_UP+2*(BAT_PANEL_HEIGHT+PANEL_VERTICAL_SPACER), BAT_PANEL_WIDTH-(PANEL_ORIZONTAL_SPACER/2), BAT_PANEL_HEIGHT);
-	pbattery3->show();
-
-	pbattery4 = new BatteryPanel(this);
-	pbattery4->setGeometry(BAT_DISPLAY_OFFSET_LEFT, GROUP_PANEL_OFFSET_UP+3*(BAT_PANEL_HEIGHT+PANEL_VERTICAL_SPACER), BAT_PANEL_WIDTH-(PANEL_ORIZONTAL_SPACER/2), BAT_PANEL_HEIGHT);
-	pbattery4->show();
-
-	pbattery5 = new BatteryPanel(this);
-	pbattery5->setGeometry(BAT_DISPLAY_OFFSET_LEFT, GROUP_PANEL_OFFSET_UP+4*(BAT_PANEL_HEIGHT+PANEL_VERTICAL_SPACER), BAT_PANEL_WIDTH-(PANEL_ORIZONTAL_SPACER/2), BAT_PANEL_HEIGHT);
-	pbattery5->show();
-
-	pbattery1->setCharge(9);
-	pbattery2->setCharge(25);
-	pbattery3->setCharge(46);
-	pbattery4->setCharge(67);
-	pbattery5->setCharge(88);
 	/*
 	pbattery6->setCharge(59);
 	pbattery7->setCharge(61);
@@ -73,26 +79,103 @@ void BatteryDisplay::paintEvent(QPaintEvent *)
 	*/
 }
 
-void BatteryDisplay::batteryUpdate(int idCell, QString dataDescription, QString data) {
-    int val = data.toInt();
-    if (dataDescription == "voltage") {
-        switch (idCell) {
-            case 1:
-                pbattery1->setCharge(val);
-                qDebug() << "BATT 1: " << val;
-            break;
-            case 2:
-                pbattery2->setCharge(val);
-            break;
-            case 3:
-                pbattery3->setCharge(val);
-            break;
-            case 4:
-                pbattery4->setCharge(val);
-            break;
-            case 5:
-                pbattery5->setCharge(val);
-            break;
-        }
+void BatteryDisplay::batteryChargeUpdate(int idCell, int percentage)
+{
+    qDebug() << "BATT" << idCell << " [CHARGE %] > " << percentage;
+    switch (idCell)
+    {
+        case 1:
+            pbattery1->setCharge(percentage);
+            pbattery1->update();
+        break;
+        case 2:
+            pbattery2->setCharge(percentage);
+            pbattery2->update();
+        break;
+        case 3:
+            pbattery3->setCharge(percentage);
+            pbattery3->update();
+        break;
+        case 4:
+            pbattery4->setCharge(percentage);
+            pbattery4->update();
+        break;
+        case 5:
+            pbattery5->setCharge(percentage);
+            pbattery5->update();
+        break;
     }
+
+}
+
+void BatteryDisplay::batteryVoltageUpdate(int idCell, float value)
+{
+    qDebug() << "BATT" << idCell << " [VOLTAGE V] > " << value;
+    switch (idCell)
+    {
+        case 1:
+            //pbattery1->setCharge(percentage);
+        break;
+        case 2:
+            //pbattery2->setCharge(percentage);
+        break;
+        case 3:
+            //pbattery3->setCharge(percentage);
+        break;
+        case 4:
+            //pbattery4->setCharge(percentage);
+        break;
+        case 5:
+            //pbattery5->setCharge(percentage);
+        break;
+    }
+
+}
+
+void BatteryDisplay::batteryTemperatureUpdate(int idCell, float value)
+{
+    qDebug() << "BATT" << idCell << " [TEMPERATURE C] > " << value;
+    switch (idCell)
+    {
+        case 1:
+            //pbattery1->setCharge(percentage);
+        break;
+        case 2:
+            //pbattery2->setCharge(percentage);
+        break;
+        case 3:
+            //pbattery3->setCharge(percentage);
+        break;
+        case 4:
+            //pbattery4->setCharge(percentage);
+        break;
+        case 5:
+            //pbattery5->setCharge(percentage);
+        break;
+    }
+
+}
+
+void BatteryDisplay::batteryCurrentUpdate(int idCell, float value)
+{
+    qDebug() << "BATT" << idCell << " [CURRENT A] > " << value;
+    switch (idCell)
+    {
+        case 1:
+            //pbattery1->setCharge(percentage);
+        break;
+        case 2:
+            //pbattery2->setCharge(percentage);
+        break;
+        case 3:
+            //pbattery3->setCharge(percentage);
+        break;
+        case 4:
+            //pbattery4->setCharge(percentage);
+        break;
+        case 5:
+            //pbattery5->setCharge(percentage);
+        break;
+    }
+
 }

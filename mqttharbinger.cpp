@@ -11,7 +11,7 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
     const QMqttTopicName battopic (QString("testbat"));
 
     m_client = new QMqttClient(this);
-    m_client->setHostname("192.168.1.164");
+    m_client->setHostname("194.116.126.73");
     m_client->setPort(MQTT_BROKER_PORT);
     m_client->connectToHost();
 
@@ -30,14 +30,23 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
             QRegExp rx("(\\/|\\t)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
             QStringList query = topic.name().split(rx);
             qDebug() << query;
-            if (query.at(0) == "battery") emit mqttBatteryEvent (query.at(1).toInt(), query.at(2), message);
+
+            if (query.at(0) == "battery")
+            {
+                if      (query.at(2) == "charge")       emit batteryChargeEvent(query.at(1).toInt(), message.toInt());
+                else if (query.at(2) == "voltage")      emit batteryVoltageEvent(query.at(1).toInt(), message.toFloat());
+                else if (query.at(2) == "temperature")  emit batteryTemperatureEvent(query.at(1).toInt(), message.toFloat());
+                else if (query.at(2) == "current")      emit batteryCurrentEvent(query.at(1).toInt(), message.toFloat());
+            }
+
+            // if (query.at(0) == "battery") emit mqttBatteryEvent (query.at(1).toInt(), query.at(2), message);
     });
 
 }
 
 void MqttHarbinger::testMqtt () {
     qDebug() << "MQTT CONNESSO";
-    QString batterytopicstring ("testtopic");
+    QString batterytopicstring ("diagnosys");
     auto subscription = m_client->subscribe(batterytopicstring);
     if (!subscription) {
         qDebug() << "Error: MQTT subscription";
@@ -45,15 +54,37 @@ void MqttHarbinger::testMqtt () {
 
     batterySubscription();
 
-    m_client->publish(batterytopicstring, batterytopicstring.toUtf8());
-    if (m_client->publish(batterytopicstring, batterytopicstring.toUtf8()) == -1) qDebug() << "MQTT PUBLISH ERROR";
+    QString connectionMessage = "["
+            + QDateTime::currentDateTime().toString()
+            + "] Mission Control: Connesso al Broker MQTT";
+
+    if (m_client->publish(batterytopicstring, connectionMessage.toUtf8()) == -1) qDebug() << "MQTT PUBLISH ERROR";
     else qDebug() << "MQTT PUBLISHED";
 }
 
 void MqttHarbinger::batterySubscription () {
-    QString batterytopicstring ("battery/1/voltage");
-    auto subscription = m_client->subscribe(batterytopicstring);
-    if (!subscription) {
-        qDebug() << "Error: MQTT subscription";
-    } else qDebug() << "MQTT: battery subscribed";
+
+    int i;
+    QString batterytopicstring;
+    QString argumentsArray[4] = {
+        "charge",
+        "voltage",
+        "temperature",
+        "current"
+    };
+
+    for (i=0; i<4; i++)
+    {
+        batterytopicstring = "battery/"
+                + QString::number(1)
+                + "/"
+                + argumentsArray[i];
+
+        auto subscription = m_client->subscribe(batterytopicstring);
+        if (!subscription) {
+            qDebug() << "ERROR: MQTT subscription on Topic[" << batterytopicstring << "]";
+        } else qDebug() << "OK: MQTT: subscribed on Topic[" << batterytopicstring << "]";
+    }
+
+
 }

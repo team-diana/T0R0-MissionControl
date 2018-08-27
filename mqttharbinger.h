@@ -17,7 +17,12 @@ public:
     QMqttClient *m_client;
 
 signals:
-    void mqttBatteryEvent (int idCell, QString dataType, QString message);
+    //void mqttBatteryEvent (int idCell, QString dataType, QString message);
+
+    void batteryChargeEvent (int idCell, int value);
+    void batteryTemperatureEvent (int idCell, float value);
+    void batteryVoltageEvent (int idCell, float value);
+    void batteryCurrentEvent (int idCell, float value);
 
 public slots:
 
