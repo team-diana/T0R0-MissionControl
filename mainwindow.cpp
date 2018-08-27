@@ -35,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     connected = false;
 
+    m_mqttHarbinger = new MqttHarbinger(this);
+
     // Custom elements
     start_button = new StartButton(this);
     start_button->setGeometry(this->width() / 2 - 100, this->height() - 100, 200, 100);
@@ -53,6 +55,12 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     allsysdisplay = new AllSysDisplay(this);
     allsysdisplay->setGeometry( ((this->width() / 2) - (ALLSYS_DISPLAY_WIDTH / 2)), ALLSYS_DISPLAY_POSY, ALLSYS_DISPLAY_WIDTH + 2, ALLSYS_DISPLAY_HEIGHT + 2);
+
+    connect(m_mqttHarbinger, &MqttHarbinger::batteryChargeEvent,      batterydisplay, &BatteryDisplay::batteryChargeUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::batteryVoltageEvent,     batterydisplay, &BatteryDisplay::batteryVoltageUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::batteryTemperatureEvent, batterydisplay, &BatteryDisplay::batteryTemperatureUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::batteryCurrentEvent,     batterydisplay, &BatteryDisplay::batteryCurrentUpdate);
+
 }
 
 MainWindow::~MainWindow(){

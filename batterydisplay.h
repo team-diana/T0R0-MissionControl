@@ -18,17 +18,24 @@
 
 class BatteryDisplay : public QWidget
 {
-		Q_OBJECT
-	public:
-    explicit BatteryDisplay(QWidget *parent = 0);
-	signals:
+    Q_OBJECT
+public:
+    explicit BatteryDisplay(QWidget *parent = nullptr);
 
-	public slots:
+signals:
+
+public slots:
+    void batteryChargeUpdate(int idCell, int percentage);
+    void batteryVoltageUpdate(int idCell, float value);
+    void batteryTemperatureUpdate(int idCell, float value);
+    void batteryCurrentUpdate(int idCell, float value);
+
 
 protected:
 	void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 private:
- 	BatteryPanel *pbattery1, *pbattery2, *pbattery3, *pbattery4, *pbattery5;
+    BatteryPanel *pbattery[5];
+
 };
 
 #endif // BATTERYDISPLAY_H

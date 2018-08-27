@@ -3,7 +3,7 @@
 
 BatteryIndicator::BatteryIndicator(QWidget *parent) : QWidget(parent)
 {
-    charge = 100;
+    charge = -1;
     in_use = false;
 }
 

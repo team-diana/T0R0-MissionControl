@@ -10,6 +10,13 @@
 BatteryPanel::BatteryPanel(QWidget *parent) : QWidget(parent)
 {
 	charge = 0;
+
+    battIndicator = new BatteryIndicator(this);
+    battIndicator->setGeometry(BAT_PANEL_OFFSET_LEFT, BAT_PANEL_OFFSET_UP, BAT_PANEL_OFFSET_RIGHT, BAT_PANEL_OFFSET_DOWN);
+    battIndicator->setCharge(charge);
+
+    battInfo = new BatteryInfo(this);
+    battInfo->setGeometry(BAT_PANEL_OFFSET_LEFT + BAT_PANEL_OFFSET_RIGHT + 15, BAT_PANEL_OFFSET_UP, BAT_TEMP_WIDTH, BAT_TEMP_HEIGHT);
 }
 
 
@@ -20,19 +27,24 @@ void BatteryPanel::paintEvent(QPaintEvent *)
 	//painter.setBrush(QColor(190,190,190,50));			// Colored backgroud for DEBUG pourpouses
 	//painter.drawRect(0, 0, BAT_PANEL_WIDTH, BAT_PANEL_HEIGHT);
 
-    battery = new BatteryIndicator(this);
-    battery->setGeometry(BAT_PANEL_OFFSET_LEFT, BAT_PANEL_OFFSET_UP, BAT_PANEL_OFFSET_RIGHT, BAT_PANEL_OFFSET_DOWN);
-    battery->show();
-
-	temperature = new BatteryTemperatureIndicator(this);
-    temperature->setGeometry(BAT_PANEL_OFFSET_LEFT + BAT_PANEL_OFFSET_RIGHT - 45, BAT_PANEL_OFFSET_UP, BAT_TEMP_WIDTH, BAT_TEMP_HEIGHT);
-    temperature->show();
-
-    battery->setCharge(charge);
-
+    battIndicator->show();
+    battInfo->show();
 }
 
 void BatteryPanel::setCharge(int _charge)
 {
 	charge = _charge;
+    battIndicator->setCharge(charge);
+}
+
+void BatteryPanel::setTemperature(float _temperature)
+{
+    temperature = _temperature;
+    battInfo->setTemperature(temperature);
+}
+
+void BatteryPanel::setCurrent(float _current)
+{
+    current = _current;
+    battInfo->setCurrent(current);
 }

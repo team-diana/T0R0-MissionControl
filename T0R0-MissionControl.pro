@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network mqtt
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,11 +25,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 RESOURCES     += resources.qrc
 
 SOURCES += \
-        *.cpp
+        *.cpp \
 
 HEADERS += \
         *.h \
-    config.h
 
 FORMS += \
         mainwindow.ui

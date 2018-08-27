@@ -1,5 +1,5 @@
-#ifndef BATTERYTEMPINDICATOR_H
-#define BATTERYTEMPINDICATOR_H
+#ifndef BATTERYINFO_H
+#define BATTERYINFO_H
 
 #include <QWidget>
 #include <QPainter>
@@ -10,14 +10,17 @@
 #define WARNING 1
 #define ALERT 2
 
-#define BAT_TEMP_WIDTH 200
+#define BAT_TEMP_WIDTH 150
 #define BAT_TEMP_HEIGHT 20
 
-class BatteryTemperatureIndicator : public QWidget
+class BatteryInfo : public QWidget
 {
     Q_OBJECT
 public:
-    explicit BatteryTemperatureIndicator(QWidget *parent = 0);
+    explicit BatteryInfo(QWidget *parent = nullptr);
+
+    void setTemperature(float _temperature);
+    void setCurrent(float _current);
 
 signals:
 
@@ -25,11 +28,11 @@ public slots:
 
 
 private:
-    int temperature;
+    float voltage, temperature, current;
     bool in_use;
 
 protected:
 	void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 };
 
-#endif // BATTERYTEMPINDICATOR_H
+#endif // BATTERYINFO_H
