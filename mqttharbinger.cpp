@@ -64,7 +64,7 @@ void MqttHarbinger::testMqtt () {
 
 void MqttHarbinger::batterySubscription () {
 
-    int i;
+    int i, j;
     QString batterytopicstring;
     QString argumentsArray[4] = {
         "charge",
@@ -73,18 +73,19 @@ void MqttHarbinger::batterySubscription () {
         "current"
     };
 
-    for (i=0; i<4; i++)
+    for (i=1; i<=5; i++)
     {
-        batterytopicstring = "battery/"
-                + QString::number(1)
-                + "/"
-                + argumentsArray[i];
+        for (j=0; j<4; j++)
+        {
+            batterytopicstring = "battery/"
+                    + QString::number(i)
+                    + "/"
+                    + argumentsArray[j];
 
-        auto subscription = m_client->subscribe(batterytopicstring);
-        if (!subscription) {
-            qDebug() << "ERROR: MQTT subscription on Topic[" << batterytopicstring << "]";
-        } else qDebug() << "OK: MQTT: subscribed on Topic[" << batterytopicstring << "]";
+            auto subscription = m_client->subscribe(batterytopicstring);
+            if (!subscription) {
+                qDebug() << "ERROR: MQTT subscription on Topic[" << batterytopicstring << "]";
+            } else qDebug() << "OK: MQTT: subscribed on Topic[" << batterytopicstring << "]";
+        }
     }
-
-
 }
