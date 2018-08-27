@@ -18,16 +18,19 @@ class BatteryPanel : public QWidget
 {
     Q_OBJECT
 public:
-    explicit BatteryPanel(QWidget *parent = 0);
+    explicit BatteryPanel(QWidget *parent = nullptr);
 signals:
 
 public slots:
 	void setCharge(int charge);
+    void setTemperature(float _temperature);
+    void setCurrent(float _current);
 
 protected:
 	void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 private:
 	int charge;
+    float voltage, temperature, current;
     BatteryIndicator *battIndicator;
     BatteryInfo *battInfo;
 };

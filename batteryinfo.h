@@ -10,14 +10,17 @@
 #define WARNING 1
 #define ALERT 2
 
-#define BAT_TEMP_WIDTH 200
+#define BAT_TEMP_WIDTH 150
 #define BAT_TEMP_HEIGHT 20
 
 class BatteryInfo : public QWidget
 {
     Q_OBJECT
 public:
-    explicit BatteryInfo(QWidget *parent = 0);
+    explicit BatteryInfo(QWidget *parent = nullptr);
+
+    void setTemperature(float _temperature);
+    void setCurrent(float _current);
 
 signals:
 
@@ -25,7 +28,7 @@ public slots:
 
 
 private:
-    int temperature;
+    float voltage, temperature, current;
     bool in_use;
 
 protected:

@@ -138,19 +138,19 @@ void BatteryDisplay::batteryTemperatureUpdate(int idCell, float value)
     switch (idCell)
     {
         case 1:
-            //pbattery1->setCharge(percentage);
+            pbattery1->setTemperature(value);
         break;
         case 2:
-            //pbattery2->setCharge(percentage);
+            pbattery2->setTemperature(value);
         break;
         case 3:
-            //pbattery3->setCharge(percentage);
+            pbattery3->setTemperature(value);
         break;
         case 4:
-            //pbattery4->setCharge(percentage);
+            pbattery4->setTemperature(value);
         break;
         case 5:
-            //pbattery5->setCharge(percentage);
+            pbattery5->setTemperature(value);
         break;
     }
 
@@ -162,19 +162,19 @@ void BatteryDisplay::batteryCurrentUpdate(int idCell, float value)
     switch (idCell)
     {
         case 1:
-            //pbattery1->setCharge(percentage);
+            pbattery1->setCurrent(value);
         break;
         case 2:
-            //pbattery2->setCharge(percentage);
+            pbattery2->setCurrent(value);
         break;
         case 3:
-            //pbattery3->setCharge(percentage);
+            pbattery3->setCurrent(value);
         break;
         case 4:
-            //pbattery4->setCharge(percentage);
+            pbattery4->setCurrent(value);
         break;
         case 5:
-            //pbattery5->setCharge(percentage);
+            pbattery5->setCurrent(value);
         break;
     }
 
