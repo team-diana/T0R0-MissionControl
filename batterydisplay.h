@@ -34,7 +34,7 @@ public slots:
 protected:
 	void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 private:
- 	BatteryPanel *pbattery1, *pbattery2, *pbattery3, *pbattery4, *pbattery5;
+    BatteryPanel *pbattery[5];
 
 };
 
