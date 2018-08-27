@@ -11,7 +11,7 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
     const QMqttTopicName battopic (QString("testbat"));
 
     m_client = new QMqttClient(this);
-    m_client->setHostname("194.116.126.73");
+    m_client->setHostname(MQTT_BROKER_IP);
     m_client->setPort(MQTT_BROKER_PORT);
     m_client->connectToHost();
 
