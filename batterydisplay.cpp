@@ -1,5 +1,6 @@
 #include "batterydisplay.h"
 #include <QtMqtt/QMqttClient>
+#include "mqttharbinger.h"
 
 #define BAT_DISPLAY_OFFSET_LEFT 20
 #define BAT_DISPLAY_OFFSET_UP 22
@@ -70,4 +71,28 @@ void BatteryDisplay::paintEvent(QPaintEvent *)
 	pbattery9->setCharge(84);
 	pbattery10->setCharge(100);
 	*/
+}
+
+void BatteryDisplay::batteryUpdate(int idCell, QString dataDescription, QString data) {
+    int val = data.toInt();
+    if (dataDescription == "voltage") {
+        switch (idCell) {
+            case 1:
+                pbattery1->setCharge(val);
+                qDebug() << "BATT 1: " << val;
+            break;
+            case 2:
+                pbattery2->setCharge(val);
+            break;
+            case 3:
+                pbattery3->setCharge(val);
+            break;
+            case 4:
+                pbattery4->setCharge(val);
+            break;
+            case 5:
+                pbattery5->setCharge(val);
+            break;
+        }
+    }
 }

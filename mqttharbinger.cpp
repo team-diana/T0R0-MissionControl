@@ -4,36 +4,19 @@
 #include <QtCore/QDateTime>
 #include <QtWidgets/QMessageBox>
 
+#include <unistd.h>
+
 MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
 {
+    const QMqttTopicName battopic (QString("testbat"));
 
     m_client = new QMqttClient(this);
-    m_client->setHostname(MQTT_BROKER_IP);
+    m_client->setHostname("192.168.1.164");
     m_client->setPort(MQTT_BROKER_PORT);
     m_client->connectToHost();
 
-    connect(m_client, &QMqttClient::connected, this, [](){
-        qDebug() << "MQTT CONNESSO";
-    });
-
-    auto subscription = m_client->subscribe(QString("testbat"));
-    if (!subscription) {
-            QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not subscribe. Is there a valid connection?"));
-            return;
-    }
-
-    //connect(sub.data(), &QMqttSubscription::messageReceived, [&](QMqttMessage msg) {
-    //qDebug() << "New Message:" << msg.payload();
-    //});
-
-
-    /*
-    auto subscription = m_client->subscribe(QString("testbat"));
-        if (!subscription) {
-            qDebug() << "Could not subscribe. Is there a valid connection?";
-            return;
-        }
-
+    usleep(2000);
+    connect(m_client, &QMqttClient::connected, this, &MqttHarbinger::testMqtt);
 
     connect(m_client, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
             const QString content = QDateTime::currentDateTime().toString()
@@ -44,10 +27,33 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
                         + QLatin1Char('\n');
             qDebug() << content;
 
-            if (topic.name() == "testbat") emit mqttBatteryEvent (topic.name(), message);
+            QRegExp rx("(\\/|\\t)"); //RegEx for ' ' or ',' or '.' or ':' or '\t'
+            QStringList query = topic.name().split(rx);
+            qDebug() << query;
+            if (query.at(0) == "battery") emit mqttBatteryEvent (query.at(1).toInt(), query.at(2), message);
     });
-    */
+
 }
 
+void MqttHarbinger::testMqtt () {
+    qDebug() << "MQTT CONNESSO";
+    QString batterytopicstring ("testtopic");
+    auto subscription = m_client->subscribe(batterytopicstring);
+    if (!subscription) {
+        qDebug() << "Error: MQTT subscription";
+    }
 
+    batterySubscription();
 
+    m_client->publish(batterytopicstring, batterytopicstring.toUtf8());
+    if (m_client->publish(batterytopicstring, batterytopicstring.toUtf8()) == -1) qDebug() << "MQTT PUBLISH ERROR";
+    else qDebug() << "MQTT PUBLISHED";
+}
+
+void MqttHarbinger::batterySubscription () {
+    QString batterytopicstring ("battery/1/voltage");
+    auto subscription = m_client->subscribe(batterytopicstring);
+    if (!subscription) {
+        qDebug() << "Error: MQTT subscription";
+    } else qDebug() << "MQTT: battery subscribed";
+}

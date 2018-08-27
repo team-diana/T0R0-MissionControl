@@ -11,14 +11,18 @@ class MqttHarbinger : public QWidget
 
 public:
     explicit MqttHarbinger(QWidget *parent = nullptr);
+    void testMqtt();
+    void batterySubscription();
+
+    QMqttClient *m_client;
 
 signals:
-    void mqttBatteryEvent (QString topic, QString message);
+    void mqttBatteryEvent (int idCell, QString dataType, QString message);
 
 public slots:
 
 private:
-    QMqttClient *m_client;
+
 };
 
 #endif // MQTTHARBINGER_H
