@@ -23,7 +23,8 @@ void UltrasonicDisplay::paintEvent(QPaintEvent *)
     QLabel *pixlabel = new QLabel(this);
     QPixmap pixrover(":/Images/rover_up-230x374.png");
     pixlabel->setPixmap(pixrover.scaled(ROVIMG_WIDTH, ROVIMG_HEIGHT, Qt::KeepAspectRatio));
-    pixlabel->setGeometry(0, 0, ROVIMG_WIDTH, ROVIMG_HEIGHT );
+    pixlabel->setGeometry( (this->width() / 2) - (ROVIMG_WIDTH/2) , (this->height() / 2) - (ROVIMG_HEIGHT/2), ROVIMG_WIDTH, ROVIMG_HEIGHT );
+    pixlabel->show();
     //pixlabel->setGeometry( (this->width() - ROVIMG_WIDTH) /2, (this->height() - ROVIMG_HEIGHT) /2, ROVIMG_WIDTH, ROVIMG_HEIGHT );
 
 }
