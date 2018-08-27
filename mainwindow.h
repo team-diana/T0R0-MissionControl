@@ -15,6 +15,7 @@
 #include "autosysdisplay.h"
 #include "radiodisplay.h"
 #include "allsystemsdisplay.h"
+#include "ultrasonicdisplay.h"
 
 #include <QLabel>
 
@@ -42,6 +43,7 @@ private:
     MqttHarbinger *m_mqttHarbinger;
 
     // Custom elements
+    UltrasonicDisplay *usDisplay;
     AllSysDisplay *allsysdisplay;
     StartButton *start_button;
     RoverShow *rover;

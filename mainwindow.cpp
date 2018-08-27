@@ -22,10 +22,10 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     this->setPalette(pal);
 
     // Show Rover Image at the center of the Window
-    QLabel *pixlabel = new QLabel(this);
-    QPixmap pixrover(":/Images/rover_up-230x374.png");
-    pixlabel->setPixmap(pixrover.scaled(ROVIMG_WIDTH, ROVIMG_HEIGHT, Qt::KeepAspectRatio));
-    pixlabel->setGeometry( (this->width() - ROVIMG_WIDTH) /2, (this->height() - ROVIMG_HEIGHT) /2, ROVIMG_WIDTH, ROVIMG_HEIGHT );
+    //QLabel *pixlabel = new QLabel(this);
+    //QPixmap pixrover(":/Images/rover_up-230x374.png");
+    //pixlabel->setPixmap(pixrover.scaled(ROVIMG_WIDTH, ROVIMG_HEIGHT, Qt::KeepAspectRatio));
+    //pixlabel->setGeometry( (this->width() - ROVIMG_WIDTH) /2, (this->height() - ROVIMG_HEIGHT) /2, ROVIMG_WIDTH, ROVIMG_HEIGHT );
 
     // Show Team D.I.A.N.A. logo at bottom-right
     QLabel *pixlogo = new QLabel(this);
@@ -55,6 +55,10 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     allsysdisplay = new AllSysDisplay(this);
     allsysdisplay->setGeometry( ((this->width() / 2) - (ALLSYS_DISPLAY_WIDTH / 2)), ALLSYS_DISPLAY_POSY, ALLSYS_DISPLAY_WIDTH + 2, ALLSYS_DISPLAY_HEIGHT + 2);
+
+    // Show Ultrasonic Display
+    usDisplay = new UltrasonicDisplay(this);
+    usDisplay->setGeometry( (this->width() / 2) - (750/2), (this->height() / 2) - (750/2), 750, 750);
 
     connect(m_mqttHarbinger, &MqttHarbinger::batteryChargeEvent,      batterydisplay, &BatteryDisplay::batteryChargeUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::batteryVoltageEvent,     batterydisplay, &BatteryDisplay::batteryVoltageUpdate);

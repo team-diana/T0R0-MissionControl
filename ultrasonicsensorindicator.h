@@ -2,11 +2,19 @@
 #define ULTRASONICSENSORINDICATOR_H
 
 #include <QWidget>
+#include <QPainter>
+#include <QFont>
 
-class UltrasonicSensorIndicator
+class UltrasonicSensorIndicator : public QWidget
 {
+    Q_OBJECT
+
 public:
-    UltrasonicSensorIndicator();
+    explicit  UltrasonicSensorIndicator(QWidget *parent = nullptr);
+
+protected:
+    void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
+
 };
 
 #endif // ULTRASONICSENSORINDICATOR_H
