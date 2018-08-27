@@ -29,6 +29,6 @@ SOURCES += \
 
 HEADERS += \
         *.h \
-q
+
 FORMS += \
         mainwindow.ui
