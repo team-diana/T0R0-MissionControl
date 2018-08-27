@@ -20,15 +20,15 @@ void BatteryPanel::paintEvent(QPaintEvent *)
 	//painter.setBrush(QColor(190,190,190,50));			// Colored backgroud for DEBUG pourpouses
 	//painter.drawRect(0, 0, BAT_PANEL_WIDTH, BAT_PANEL_HEIGHT);
 
-    battery = new BatteryIndicator(this);
-    battery->setGeometry(BAT_PANEL_OFFSET_LEFT, BAT_PANEL_OFFSET_UP, BAT_PANEL_OFFSET_RIGHT, BAT_PANEL_OFFSET_DOWN);
-    battery->show();
+    battIndicator = new BatteryIndicator(this);
+    battIndicator->setGeometry(BAT_PANEL_OFFSET_LEFT, BAT_PANEL_OFFSET_UP, BAT_PANEL_OFFSET_RIGHT, BAT_PANEL_OFFSET_DOWN);
+    battIndicator->show();
 
-	temperature = new BatteryTemperatureIndicator(this);
-    temperature->setGeometry(BAT_PANEL_OFFSET_LEFT + BAT_PANEL_OFFSET_RIGHT - 45, BAT_PANEL_OFFSET_UP, BAT_TEMP_WIDTH, BAT_TEMP_HEIGHT);
-    temperature->show();
+    battInfo = new BatteryInfo(this);
+    battInfo->setGeometry(BAT_PANEL_OFFSET_LEFT + BAT_PANEL_OFFSET_RIGHT - 45, BAT_PANEL_OFFSET_UP, BAT_TEMP_WIDTH, BAT_TEMP_HEIGHT);
+    battInfo->show();
 
-    battery->setCharge(charge);
+    battIndicator->setCharge(charge);
 
 }
 

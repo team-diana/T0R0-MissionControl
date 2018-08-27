@@ -1,13 +1,13 @@
-#include "batterytempindicator.h"
+#include "batteryinfo.h"
 
-BatteryTemperatureIndicator::BatteryTemperatureIndicator(QWidget *parent) : QWidget(parent)
+BatteryInfo::BatteryInfo(QWidget *parent) : QWidget(parent)
 {
     //temperature = 100;
     //in_use = false;
 }
 
 
-void BatteryTemperatureIndicator::paintEvent(QPaintEvent *)
+void BatteryInfo::paintEvent(QPaintEvent *)
 {
 
 	QPainter painter(this);

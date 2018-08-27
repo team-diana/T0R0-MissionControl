@@ -2,7 +2,7 @@
 #define BATTERYPANEL_H
 
 #include "batteryindicator.h"
-#include "batterytempindicator.h"
+#include "batteryinfo.h"
 #include <QWidget>
 #include <QPainter>
 
@@ -28,8 +28,8 @@ protected:
 	void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 private:
 	int charge;
-	BatteryIndicator *battery;
-	BatteryTemperatureIndicator *temperature;
+    BatteryIndicator *battIndicator;
+    BatteryInfo *battInfo;
 };
 
 #endif // BATTERYPANEL_H
