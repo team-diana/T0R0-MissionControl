@@ -6,14 +6,16 @@
 
 class UltrasonicDisplay : public QWidget
 {
-public:
-    UltrasonicDisplay(QWidget *parent = nullptr);
+    Q_OBJECT
 
-private:
-    UltrasonicSensorIndicator *usIndicator;
+public:
+    explicit UltrasonicDisplay(QWidget *parent = nullptr);
 
 protected:
     void paintEvent (QPaintEvent *event) Q_DECL_OVERRIDE;
+
+private:
+    UltrasonicSensorIndicator *usIndicator;
 };
 
 #endif // ULTRASONICDISPLAY_H
