@@ -4,8 +4,8 @@
 #include <QDebug>
 
 
-#define ROVIMG_WIDTH 230
-#define ROVIMG_HEIGHT 374
+#define ULTRASONIC_WIDTH 600
+#define ULTRASONIC_HEIGHT 750
 
 // Constructor
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     // Show Ultrasonic Display
     usDisplay = new UltrasonicDisplay(this);
-    usDisplay->setGeometry( (this->width() / 2) - (750/2), (this->height() / 2) - (750/2), 750, 750);
+    usDisplay->setGeometry( (this->width() / 2) - (ULTRASONIC_WIDTH/2), (this->height() / 2) - (ULTRASONIC_HEIGHT/2), ULTRASONIC_WIDTH, ULTRASONIC_HEIGHT);
 
     connect(m_mqttHarbinger, &MqttHarbinger::batteryChargeEvent,      batterydisplay, &BatteryDisplay::batteryChargeUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::batteryVoltageEvent,     batterydisplay, &BatteryDisplay::batteryVoltageUpdate);
