@@ -36,7 +36,7 @@ substitute <> with the correct path.
 
 Clone the library repository with
 ```bash
-git clone git://code.qt.io/qt/qtmqtt.git
+git clone http://code.qt.io/qt/qtmqtt.git
 ```
 
 Compile the library
