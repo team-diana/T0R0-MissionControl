@@ -15,7 +15,7 @@ protected:
     void paintEvent (QPaintEvent *event) Q_DECL_OVERRIDE;
 
 private:
-    UltrasonicSensorIndicator *usIndicator;
+    UltrasonicSensorIndicator *usIndicator[18];
 };
 
 #endif // ULTRASONICDISPLAY_H

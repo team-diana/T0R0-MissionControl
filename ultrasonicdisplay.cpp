@@ -9,6 +9,8 @@ UltrasonicDisplay::UltrasonicDisplay(QWidget *parent) : QWidget(parent)
     usIndicator = new UltrasonicSensorIndicator (this);
     usIndicator->setGeometry(500, 900, 100, 100);
     //battIndicator->setCharge(charge);
+
+    for (int i=0; i<18; i++) usIndicator = new UltrasonicSensorIndicator(this);
 }
 
 void UltrasonicDisplay::paintEvent(QPaintEvent *)
@@ -26,12 +28,9 @@ void UltrasonicDisplay::paintEvent(QPaintEvent *)
     pixlabel->setGeometry( (this->width() - ROVIMG_WIDTH) /2 , (this->height() - ROVIMG_HEIGHT) /2, ROVIMG_WIDTH, ROVIMG_HEIGHT );
     pixlabel->show();
 
-    QColor basicArchColor (255, 101, 120, 255);
-    painter.setPen(basicArchColor);
-    painter.setBrush(basicArchColor);
-
-    QRect pieRec((this->width() - 350)/2, (this->height()/2) - ROVIMG_HEIGHT+110, 350,350);
-    painter.drawPie(pieRec, 1440 - 42, 84);
-
-
+    int i;
+    for (i=4; i<=6; i++)    // Frontal Ultrasonic Sensor
+    {
+        usIndicator[i+1]->setGeometry();
+    }
 }
