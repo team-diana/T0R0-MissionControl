@@ -10,10 +10,13 @@ class UltrasonicSensorIndicator : public QWidget
     Q_OBJECT
 
 public:
-    explicit  UltrasonicSensorIndicator(QWidget *parent = nullptr);
+    explicit  UltrasonicSensorIndicator(QWidget *parent = nullptr, int _direction = 1);
 
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
+
+private:
+    int direction;
 
 };
 

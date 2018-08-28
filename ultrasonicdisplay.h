@@ -4,6 +4,9 @@
 #include <QWidget>
 #include "ultrasonicsensorindicator.h"
 
+#define ULTRASONIC_WIDTH 600
+#define ULTRASONIC_HEIGHT 750
+
 class UltrasonicDisplay : public QWidget
 {
     Q_OBJECT

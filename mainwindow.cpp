@@ -4,9 +4,6 @@
 #include <QDebug>
 
 
-#define ULTRASONIC_WIDTH 600
-#define ULTRASONIC_HEIGHT 750
-
 // Constructor
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
