@@ -15,6 +15,8 @@ class UltrasonicSensorIndicator : public QWidget
 public:
     explicit  UltrasonicSensorIndicator(QWidget *parent = nullptr, int _direction = 1, bool _oblique = 0);
     void setStatus(int _status);
+    //void setDirection( int direction);
+    //void setOblique(bool oblique);
 
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;

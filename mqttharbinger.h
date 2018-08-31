@@ -13,6 +13,7 @@ public:
     explicit MqttHarbinger(QWidget *parent = nullptr);
     void testMqtt();
     void batterySubscription();
+    void ultrasonicSensorSubscription();
 
     QMqttClient *m_client;
 
@@ -23,6 +24,9 @@ signals:
     void batteryTemperatureEvent (int idCell, float value);
     void batteryVoltageEvent (int idCell, float value);
     void batteryCurrentEvent (int idCell, float value);
+    //void ultrasonicSensorDirectionEvent (int sensorID, int direction);
+    //void ultrasonicSensorObliqueEvent (int sensorID, bool oblique);
+    void ultrasonicSensorStatusEvent (int sensorID, int status);
 
 public slots:
 

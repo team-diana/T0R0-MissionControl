@@ -57,10 +57,12 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     usDisplay = new UltrasonicDisplay(this);
     usDisplay->setGeometry( (this->width() / 2) - (ULTRASONIC_WIDTH/2), (this->height() / 2) - (ULTRASONIC_HEIGHT/2), ULTRASONIC_WIDTH, ULTRASONIC_HEIGHT);
 
-    connect(m_mqttHarbinger, &MqttHarbinger::batteryChargeEvent,      batterydisplay, &BatteryDisplay::batteryChargeUpdate);
-    connect(m_mqttHarbinger, &MqttHarbinger::batteryVoltageEvent,     batterydisplay, &BatteryDisplay::batteryVoltageUpdate);
-    connect(m_mqttHarbinger, &MqttHarbinger::batteryTemperatureEvent, batterydisplay, &BatteryDisplay::batteryTemperatureUpdate);
-    connect(m_mqttHarbinger, &MqttHarbinger::batteryCurrentEvent,     batterydisplay, &BatteryDisplay::batteryCurrentUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::batteryChargeEvent,          batterydisplay, &BatteryDisplay::batteryChargeUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::batteryVoltageEvent,         batterydisplay, &BatteryDisplay::batteryVoltageUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::batteryTemperatureEvent,     batterydisplay, &BatteryDisplay::batteryTemperatureUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::batteryCurrentEvent,         batterydisplay, &BatteryDisplay::batteryCurrentUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::ultrasonicSensorStatusEvent, usDisplay,      &UltrasonicDisplay::ultrasonicSensorStatusUpdate);
+
 
 }
 

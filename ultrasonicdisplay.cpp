@@ -127,3 +127,9 @@ void UltrasonicDisplay::paintEvent(QPaintEvent *)
       //  usIndicator[i]->show();
     //}
 }
+
+void UltrasonicDisplay::ultrasonicSensorStatusUpdate (int sensorID, int status)
+{
+    qDebug() << "ULTRASONIC" << sensorID << " [STATUS] > " << status;
+    if(sensorID < SENSOR_QUANTITY) usIndicator[sensorID]->setStatus(status);
+}

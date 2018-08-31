@@ -55,3 +55,11 @@ void UltrasonicSensorIndicator::paintEvent(QPaintEvent *)
     if (!oblique) painter.drawPie(pieRec, (direction * 1440) - 42, 84);
     else painter.drawPie(pieRec, (direction * 1440) + 720 - 42, 84);
 }
+
+
+void setStatus(int _status)
+{
+    this.status = _status;
+}
+//void setDirection( int direction);
+//void setOblique(bool oblique);
