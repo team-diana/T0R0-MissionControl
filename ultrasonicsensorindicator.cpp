@@ -57,9 +57,9 @@ void UltrasonicSensorIndicator::paintEvent(QPaintEvent *)
 }
 
 
-void setStatus(int _status)
+void UltrasonicSensorIndicator::setStatus(int _status)
 {
-    this.status = _status;
+    status = _status;
 }
 //void setDirection( int direction);
 //void setOblique(bool oblique);

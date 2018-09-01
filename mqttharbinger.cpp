@@ -67,12 +67,14 @@ void MqttHarbinger::testMqtt () {
     else qDebug() << "MQTT PUBLISHED";
 }
 
-void ultrasonicSensorSubscription(){
-    m_client->subscribe("ultrasonicSensor/#");
+void MqttHarbinger::ultrasonicSensorSubscription(){
+    QString topicString("ultrasonicSensor/#");
+    m_client->subscribe(topicString);
 }
 
 void MqttHarbinger::batterySubscription () {
-    m_client->subscribe("battery/#");
+    QString topicString("battery/#");
+    m_client->subscribe(topicString);
     /*int i, j;
     QString batterytopicstring;
     QString argumentsArray[4] = {
