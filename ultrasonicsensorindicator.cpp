@@ -12,6 +12,7 @@ UltrasonicSensorIndicator::UltrasonicSensorIndicator(QWidget *parent, int _direc
     direction = _direction;
     oblique = _oblique;
     status = -1;
+    percentage = 1;
 }
 
 
@@ -24,6 +25,9 @@ void UltrasonicSensorIndicator::paintEvent(QPaintEvent *)
 
     //painter.drawRect(QRect(0, 0, this->width(), this->height()));
 
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::HighQualityAntialiasing);
+
 
     QColor basicPieColor   (254, 203, 47);     // BASIC
     QColor pieColor_gray   (105, 105, 105);    // GRAY
@@ -34,13 +38,13 @@ void UltrasonicSensorIndicator::paintEvent(QPaintEvent *)
 
     painter.setPen(basicPieColor);         // GRAY
     painter.setBrush(basicPieColor);
-    QRect pieRec_gray(0, 0, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_WIDTH);
+    QRect pieRec_gray(0, 0, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
     if (!oblique) painter.drawPie(pieRec_gray, (direction * 1440) - 42, 84);
     else painter.drawPie(pieRec_gray, (direction * 1440) + 720 - 42, 84);
 
     painter.setPen(pieColor_green);          // GREEN
     painter.setBrush(pieColor_green);
-    QRect pieRec_green(0, 0, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_WIDTH);
+    QRect pieRec_green(0, 0, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
     if (!oblique) painter.drawPie(pieRec_green, (direction * 1440) - 42, 84);
     else painter.drawPie(pieRec_green, (direction * 1440) + 720 - 42, 84);
 
@@ -48,7 +52,7 @@ void UltrasonicSensorIndicator::paintEvent(QPaintEvent *)
     painter.setBrush(pieColor_yellow);
     int startPoint_X_Yellow = (( this->width()  - (this->width()  * SIZECOLORSCALE_YELLOW)) / 2);
     int startPoint_Y_Yellow = (( this->height() - (this->height() * SIZECOLORSCALE_YELLOW)) / 2);
-    QRect pieRec_yellow(startPoint_X_Yellow, startPoint_Y_Yellow, SIZECOLORSCALE_YELLOW*ULTRASONIC_PIE_WIDTH, SIZECOLORSCALE_YELLOW*ULTRASONIC_PIE_WIDTH);
+    QRect pieRec_yellow(startPoint_X_Yellow, startPoint_Y_Yellow, SIZECOLORSCALE_YELLOW*ULTRASONIC_PIE_WIDTH, SIZECOLORSCALE_YELLOW*ULTRASONIC_PIE_HEIGHT);
     if (!oblique) painter.drawPie(pieRec_yellow, (direction * 1440) - 42, 84);
     else painter.drawPie(pieRec_yellow, (direction * 1440) + 720 - 42, 84);
 
@@ -56,10 +60,21 @@ void UltrasonicSensorIndicator::paintEvent(QPaintEvent *)
     painter.setBrush(pieColor_red);
     int startPoint_X_Red = (( this->width()  - (this->width()  * SIZECOLORSCALE_RED)) / 2);
     int startPoint_Y_Red = (( this->height() - (this->height() * SIZECOLORSCALE_RED)) / 2);
-    QRect pieRec_red(startPoint_X_Red, startPoint_Y_Red, SIZECOLORSCALE_RED*ULTRASONIC_PIE_WIDTH, SIZECOLORSCALE_RED*ULTRASONIC_PIE_WIDTH);
+    QRect pieRec_red(startPoint_X_Red, startPoint_Y_Red, SIZECOLORSCALE_RED*ULTRASONIC_PIE_WIDTH, SIZECOLORSCALE_RED*ULTRASONIC_PIE_HEIGHT);
     if (!oblique) painter.drawPie(pieRec_red, (direction * 1440) - 42, 84);
     else painter.drawPie(pieRec_red, (direction * 1440) + 720 - 42, 84);
 
+
+    // With the colored scale background cover
+    //  with dynamic basic background to display distance.
+
+    int startPoint_X_value = (( this->width()  - (this->width()  * (percentage))) / 2);
+    int startPoint_Y_value = (( this->height() - (this->height() * (percentage))) / 2);
+    painter.setPen(pieColor_gray);         // GRAY
+    painter.setBrush(pieColor_gray);
+    QRect pieRec_value(startPoint_X_value-2, startPoint_Y_value-2, (percentage*ULTRASONIC_PIE_WIDTH)+3, (percentage*ULTRASONIC_PIE_HEIGHT)+3);
+    if (!oblique) painter.drawPie(pieRec_value, (direction * 1440) - 42, 86);
+    else painter.drawPie(pieRec_value, (direction * 1440) + 720 - 42, 90);
 
     // switch (status)
     // {

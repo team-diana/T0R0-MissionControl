@@ -25,7 +25,7 @@ private:
     int direction;
     bool oblique;
     int status;
-
+    float percentage;
 };
 
 #endif // ULTRASONICSENSORINDICATOR_H
