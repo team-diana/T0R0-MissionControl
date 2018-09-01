@@ -79,7 +79,7 @@ void UltrasonicDisplay::paintEvent(QPaintEvent *)
     int roverImageStartX = (ULTRASONIC_WIDTH - ROVIMG_WIDTH) /2;
     int roverImageStartY = (ULTRASONIC_HEIGHT - ROVIMG_HEIGHT) /2;
 
-    int chassisBorder_LeftX =  roverImageStartX + CHASSIS_X0;
+    int chassisBorder_LeftX =  roverImageStartX + CHASSIS_X0 - (ULTRASONIC_PIE_WIDTH/2);
     int chassisBorder_RightX = roverImageStartX + CHASSIS_X1 - (ULTRASONIC_PIE_WIDTH/2);
     int chassisBorder_UpY =    roverImageStartY + CHASSIS_Y0 - CHASSIS_HEIGHT +15;
     int chassisBorder_DownY =  roverImageStartY + CHASSIS_Y1 - CHASSIS_HEIGHT;
@@ -90,35 +90,36 @@ void UltrasonicDisplay::paintEvent(QPaintEvent *)
     //qDebug() << roverImageStartX << " | " << frontStartingPointX << " | " << CHASSIS_WIDTH;
     for (int i=0; i<=2; i++)
     {
-        usIndicator[i]->setGeometry(frontStartingPointX + ((i+1)*ULTRASONIC_PIE_FRONT_SPACING) - 175, frontStartingPointY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
+        usIndicator[i]->setGeometry(chassisBorder_RightX - ((i+1)*ULTRASONIC_PIE_FRONT_SPACING), chassisBorder_UpY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
     }
 
     // REAR ULTRASONIC SENSORs
     for (int i=7; i<=9; i++)
     {
-        usIndicator[i]->setGeometry(rearStartingPointX + ((i-6)*ULTRASONIC_PIE_FRONT_SPACING) - 175, rearStartingPointY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
+        usIndicator[i]->setGeometry(chassisBorder_LeftX + ((i-6)*ULTRASONIC_PIE_FRONT_SPACING), chassisBorder_DownY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
+        qDebug() << "LOOK " << i-6 << chassisBorder_LeftX + ((i-6)*ULTRASONIC_PIE_FRONT_SPACING);
     }
 
     // LEFT ULTRASONIC SENSORs
     for (int i=10; i<=13; i++)
     {
-        if (i<=11) usIndicator[i]->setGeometry(leftStartingPointX, leftStartingPointY + ((i-9)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
-        else usIndicator[i]->setGeometry(leftStartingPointX, leftStartingPointY + ((i-8)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
+        if (i<=11) usIndicator[i]->setGeometry(chassisBorder_LeftX, chassisBorder_UpY + ((i-9)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
+        else usIndicator[i]->setGeometry(chassisBorder_LeftX, chassisBorder_UpY + ((i-8)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
 
     }
 
     // RIGHT ULTRASONIC SENSORs
     for (int i=3; i<=6; i++)
     {
-        if (i<=4) usIndicator[i]->setGeometry(rightStartingPointX, rightStartingPointY + ((i-2)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
-        else usIndicator[i]->setGeometry(rightStartingPointX, rightStartingPointY + ((i-1)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
+        if (i<=4) usIndicator[i]->setGeometry(chassisBorder_RightX, chassisBorder_UpY + ((i-2)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
+        else usIndicator[i]->setGeometry(chassisBorder_RightX, chassisBorder_UpY + ((i-1)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
 
     }
 
-    usIndicator[14]->setGeometry(rightStartingPointX, rightStartingPointY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
-    usIndicator[15]->setGeometry(leftStartingPointX, leftStartingPointY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
-    usIndicator[16]->setGeometry(leftStartingPointX, rearStartingPointY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
-    usIndicator[17]->setGeometry(rightStartingPointX, rearStartingPointY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
+    usIndicator[14]->setGeometry(chassisBorder_RightX, chassisBorder_UpY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);                             // Up Right
+    usIndicator[15]->setGeometry(chassisBorder_LeftX, chassisBorder_UpY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);   // Up Left
+    usIndicator[16]->setGeometry(chassisBorder_LeftX, chassisBorder_DownY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT); // Down Left
+    usIndicator[17]->setGeometry(chassisBorder_RightX, chassisBorder_DownY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);                           // Down Right
 
     //usIndicator[0]->show();
     //int i;
