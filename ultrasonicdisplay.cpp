@@ -78,9 +78,15 @@ void UltrasonicDisplay::paintEvent(QPaintEvent *)
 
     int roverImageStartX = (ULTRASONIC_WIDTH - ROVIMG_WIDTH) /2;
     int roverImageStartY = (ULTRASONIC_HEIGHT - ROVIMG_HEIGHT) /2;
+
+    int chassisBorder_LeftX =  roverImageStartX + CHASSIS_X0;
+    int chassisBorder_RightX = roverImageStartX + CHASSIS_X1 - (ULTRASONIC_PIE_WIDTH/2);
+    int chassisBorder_UpY =    roverImageStartY + CHASSIS_Y0 - CHASSIS_HEIGHT +15;
+    int chassisBorder_DownY =  roverImageStartY + CHASSIS_Y1 - CHASSIS_HEIGHT;
+
+    qDebug() << "L " << chassisBorder_LeftX << " | U " << chassisBorder_UpY << " | R " << chassisBorder_RightX << " | D " << chassisBorder_DownY;
+
     // FRONT ULTRASONIC SENSORs
-    int frontStartingPointX = roverImageStartX + CHASSIS_X0;
-    int frontStartingPointY = roverImageStartY + CHASSIS_Y0 - CHASSIS_HEIGHT +15;
     //qDebug() << roverImageStartX << " | " << frontStartingPointX << " | " << CHASSIS_WIDTH;
     for (int i=0; i<=2; i++)
     {
@@ -88,16 +94,12 @@ void UltrasonicDisplay::paintEvent(QPaintEvent *)
     }
 
     // REAR ULTRASONIC SENSORs
-    int rearStartingPointX = frontStartingPointX;
-    int rearStartingPointY = roverImageStartY + CHASSIS_Y1 - CHASSIS_HEIGHT;
     for (int i=7; i<=9; i++)
     {
         usIndicator[i]->setGeometry(rearStartingPointX + ((i-6)*ULTRASONIC_PIE_FRONT_SPACING) - 175, rearStartingPointY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
     }
 
     // LEFT ULTRASONIC SENSORs
-    int leftStartingPointX = frontStartingPointX - (ULTRASONIC_PIE_WIDTH/2);
-    int leftStartingPointY = frontStartingPointY;
     for (int i=10; i<=13; i++)
     {
         if (i<=11) usIndicator[i]->setGeometry(leftStartingPointX, leftStartingPointY + ((i-9)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
@@ -106,8 +108,6 @@ void UltrasonicDisplay::paintEvent(QPaintEvent *)
     }
 
     // RIGHT ULTRASONIC SENSORs
-    int rightStartingPointX = roverImageStartX + CHASSIS_X1 - (ULTRASONIC_PIE_WIDTH/2);
-    int rightStartingPointY = frontStartingPointY;
     for (int i=3; i<=6; i++)
     {
         if (i<=4) usIndicator[i]->setGeometry(rightStartingPointX, rightStartingPointY + ((i-2)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
