@@ -48,7 +48,8 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
 
 }
 
-void MqttHarbinger::testMqtt () {
+void MqttHarbinger::testMqtt ()
+{
     qDebug() << "MQTT CONNESSO";
     QString batterytopicstring ("diagnosys");
     auto subscription = m_client->subscribe(batterytopicstring);
@@ -67,14 +68,17 @@ void MqttHarbinger::testMqtt () {
     else qDebug() << "MQTT PUBLISHED";
 }
 
-void MqttHarbinger::ultrasonicSensorSubscription(){
+void MqttHarbinger::ultrasonicSensorSubscription()
+{
     QString topicString("ultrasonicSensor/#");
     m_client->subscribe(topicString);
 }
 
-void MqttHarbinger::batterySubscription () {
+void MqttHarbinger::batterySubscription ()
+{
     QString topicString("battery/#");
     m_client->subscribe(topicString);
+
     /*int i, j;
     QString batterytopicstring;
     QString argumentsArray[4] = {
