@@ -5,8 +5,8 @@
 #include <QPainter>
 #include <QFont>
 
-#define ULTRASONIC_PIE_WIDTH 350    // Probably modifiyng this value will make glitches # ISSUE
-#define ULTRASONIC_PIE_HEIGHT 350  // Probably modifiyng this value will make glitches  # ISSUE
+#define ULTRASONIC_PIE_WIDTH 450    // Probably modifiyng this value will make glitches # ISSUE
+#define ULTRASONIC_PIE_HEIGHT 450  // Probably modifiyng this value will make glitches  # ISSUE
 
 class UltrasonicSensorIndicator : public QWidget
 {
