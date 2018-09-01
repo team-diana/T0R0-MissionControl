@@ -12,13 +12,13 @@ class SysIndicator : public QWidget
 {
 		Q_OBJECT
 	public:
-    explicit SysIndicator(QWidget *parent = 0, QString _title = "Generic");
+    explicit SysIndicator(QWidget *parent = nullptr, QString _title = "Generic");
 	signals:
 
 	public slots:
 
 protected:
-	void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 private:
 	QString title;
 };
