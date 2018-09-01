@@ -81,10 +81,10 @@ void UltrasonicDisplay::paintEvent(QPaintEvent *)
 
     int chassisBorder_LeftX =  roverImageStartX + CHASSIS_X0 - (ULTRASONIC_PIE_WIDTH/2);
     int chassisBorder_RightX = roverImageStartX + CHASSIS_X1 - (ULTRASONIC_PIE_WIDTH/2);
-    int chassisBorder_UpY =    roverImageStartY + CHASSIS_Y0 - CHASSIS_HEIGHT +15;
-    int chassisBorder_DownY =  roverImageStartY + CHASSIS_Y1 - CHASSIS_HEIGHT;
+    int chassisBorder_UpY =    roverImageStartY + CHASSIS_Y0 - (ULTRASONIC_PIE_HEIGHT/2);
+    int chassisBorder_DownY =  roverImageStartY + CHASSIS_Y1 - (ULTRASONIC_PIE_HEIGHT/2);
 
-    qDebug() << "L " << chassisBorder_LeftX << " | U " << chassisBorder_UpY << " | R " << chassisBorder_RightX << " | D " << chassisBorder_DownY;
+    //qDebug() << "L " << chassisBorder_LeftX << " | U " << chassisBorder_UpY << " | R " << chassisBorder_RightX << " | D " << chassisBorder_DownY;
 
     // FRONT ULTRASONIC SENSORs
     //qDebug() << roverImageStartX << " | " << frontStartingPointX << " | " << CHASSIS_WIDTH;
