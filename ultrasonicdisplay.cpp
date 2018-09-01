@@ -26,14 +26,14 @@ UltrasonicDisplay::UltrasonicDisplay(QWidget *parent) : QWidget(parent)
     // FRONT ULTRASONIC SENSORs
     for (int i=0; i<=2; i++)   usIndicator[i] = new UltrasonicSensorIndicator(this, 1);
 
+    // LEFT ULTRASONIC SENSORs
+    for (int i=3; i<=6; i++) usIndicator[i] = new UltrasonicSensorIndicator(this, 2);
+
     // REAR ULTRASONIC SENSORs
     for (int i=7; i<=9; i++)   usIndicator[i] = new UltrasonicSensorIndicator(this, 3);
 
-    // LEFT ULTRASONIC SENSORs
-    for (int i=10; i<=13; i++) usIndicator[i] = new UltrasonicSensorIndicator(this, 2);
-
     // RIGHT ULTRASONIC SENSORs
-    for (int i=3; i<=6; i++)   usIndicator[i] = new UltrasonicSensorIndicator(this, 0);
+    for (int i=10; i<=13; i++)   usIndicator[i] = new UltrasonicSensorIndicator(this, 0);
 
     // OBLIQUE ULTRASONIC SENSORs
     for (int i=14; i<=17; i++) usIndicator[i] = new UltrasonicSensorIndicator(this, i-14, 1);
@@ -93,6 +93,16 @@ void UltrasonicDisplay::paintEvent(QPaintEvent *)
         usIndicator[i]->setGeometry(chassisBorder_RightX - ((i+1)*ULTRASONIC_PIE_FRONT_SPACING), chassisBorder_UpY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
     }
 
+    // LEFT ULTRASONIC SENSORs
+    for (int i=3; i<=6; i++)
+    {
+        // if (i<=4) usIndicator[i]->setGeometry(chassisBorder_RightX, chassisBorder_UpY + ((i-2)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
+        // else usIndicator[i]->setGeometry(chassisBorder_RightX, chassisBorder_UpY + ((i-1)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
+        if (i<=4) usIndicator[i]->setGeometry(chassisBorder_LeftX, chassisBorder_UpY + ((i-2)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
+        else usIndicator[i]->setGeometry(chassisBorder_LeftX, chassisBorder_UpY + ((i-1)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
+
+    }
+
     // REAR ULTRASONIC SENSORs
     for (int i=7; i<=9; i++)
     {
@@ -100,21 +110,15 @@ void UltrasonicDisplay::paintEvent(QPaintEvent *)
         qDebug() << "LOOK " << i-6 << chassisBorder_LeftX + ((i-6)*ULTRASONIC_PIE_FRONT_SPACING);
     }
 
-    // LEFT ULTRASONIC SENSORs
+    // RIGHT ULTRASONIC SENSORs
     for (int i=10; i<=13; i++)
     {
-        if (i<=11) usIndicator[i]->setGeometry(chassisBorder_LeftX, chassisBorder_UpY + ((i-9)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
-        else usIndicator[i]->setGeometry(chassisBorder_LeftX, chassisBorder_UpY + ((i-8)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
+        if (i<=11) usIndicator[i]->setGeometry(chassisBorder_RightX, chassisBorder_DownY - ((i-9)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
+        else usIndicator[i]->setGeometry(chassisBorder_RightX, chassisBorder_DownY - ((i-8)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);
 
     }
 
-    // RIGHT ULTRASONIC SENSORs
-    for (int i=3; i<=6; i++)
-    {
-        if (i<=4) usIndicator[i]->setGeometry(chassisBorder_RightX, chassisBorder_UpY + ((i-2)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
-        else usIndicator[i]->setGeometry(chassisBorder_RightX, chassisBorder_UpY + ((i-1)*ULTRASONIC_PIE_SIDE_SPACING), ULTRASONIC_PIE_WIDTH,ULTRASONIC_PIE_HEIGHT);
 
-    }
 
     usIndicator[14]->setGeometry(chassisBorder_RightX, chassisBorder_UpY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);                             // Up Right
     usIndicator[15]->setGeometry(chassisBorder_LeftX, chassisBorder_UpY, ULTRASONIC_PIE_WIDTH, ULTRASONIC_PIE_HEIGHT);   // Up Left
