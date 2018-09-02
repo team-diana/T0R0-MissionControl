@@ -6,7 +6,7 @@
 
 #define ULTRASONIC_WIDTH 600
 #define ULTRASONIC_HEIGHT 750
-#define SENSOR_QUANTITY 18
+#define N_ULTRASSONIC_SENSORS 18
 
 class UltrasonicDisplay : public QWidget
 {
@@ -25,7 +25,7 @@ protected:
     void paintEvent (QPaintEvent *event) Q_DECL_OVERRIDE;
 
 private:
-    UltrasonicSensorIndicator *usIndicator[SENSOR_QUANTITY];
+    UltrasonicSensorIndicator *usIndicator[N_ULTRASSONIC_SENSORS];
 };
 
 #endif // ULTRASONICDISPLAY_H
