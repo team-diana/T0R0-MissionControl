@@ -19,7 +19,7 @@ void BatteryInfo::paintEvent(QPaintEvent *)
     painter.drawRect(0, 0, this->width(), this->height());
 
     qDebug() << "CURRENT " << current;
-    painter.setPen(QColor(255,0,0,255));
+    painter.setPen(QColor(222, 61, 25));// 255,0,0,255));
 	QString temperatureValueString;
 	temperatureValueString.sprintf("%3.1f °C", temperature);
     painter.drawText(QRect(0, 0, BAT_TEMP_WIDTH, BAT_TEMP_HEIGHT), Qt::AlignVCenter, temperatureValueString);

@@ -53,7 +53,9 @@ void BatteryDisplay::paintEvent(QPaintEvent *)
 	m_gradient.setColorAt(1.0, QColor(10, 10, 10, 255));
 	painter.fillRect(QRect(0, 0, BAT_DISPLAY_WIDTH, BAT_DISPLAY_HEIGHT), m_gradient);
 
-	painter.setPen(pale_lightblue);
+    //painter.setPen(pale_lightblue);
+    QColor theme(11, 213, 126, 255);
+    painter.setPen(theme);
 	painter.drawText(1, 17, "Batteries");
 
 	painter.setBrush(QColor(0,0,0,0));

@@ -28,7 +28,7 @@
 ///////////
 
 //* MQTT *//
-#define MQTT_BROKER_IP "10.0.0.113"
+#define MQTT_BROKER_IP "192.168.1.67"
 #define MQTT_BROKER_PORT 1883
 ///////////
 

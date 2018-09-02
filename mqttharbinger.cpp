@@ -38,13 +38,18 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
                 else if (query.at(2) == "temperature")  emit batteryTemperatureEvent(query.at(1).toInt(), message.toFloat());
                 else if (query.at(2) == "current")      emit batteryCurrentEvent(query.at(1).toInt(), message.toFloat());
             }
+            else if (query.at(0) == "ultrasonicSensor")
+            {
+                emit ultrasonicSensorStatusEvent(query.at(1).toInt(), message.toInt());
+            }
 
             // if (query.at(0) == "battery") emit mqttBatteryEvent (query.at(1).toInt(), query.at(2), message);
     });
 
 }
 
-void MqttHarbinger::testMqtt () {
+void MqttHarbinger::testMqtt ()
+{
     qDebug() << "MQTT CONNESSO";
     QString batterytopicstring ("diagnosys");
     auto subscription = m_client->subscribe(batterytopicstring);
@@ -53,6 +58,7 @@ void MqttHarbinger::testMqtt () {
     }
 
     batterySubscription();
+    ultrasonicSensorSubscription();
 
     QString connectionMessage = "["
             + QDateTime::currentDateTime().toString()
@@ -62,9 +68,18 @@ void MqttHarbinger::testMqtt () {
     else qDebug() << "MQTT PUBLISHED";
 }
 
-void MqttHarbinger::batterySubscription () {
+void MqttHarbinger::ultrasonicSensorSubscription()
+{
+    QString topicString("ultrasonicSensor/#");
+    m_client->subscribe(topicString);
+}
 
-    int i, j;
+void MqttHarbinger::batterySubscription ()
+{
+    QString topicString("battery/#");
+    m_client->subscribe(topicString);
+
+    /*int i, j;
     QString batterytopicstring;
     QString argumentsArray[4] = {
         "charge",
@@ -87,5 +102,5 @@ void MqttHarbinger::batterySubscription () {
                 qDebug() << "ERROR: MQTT subscription on Topic[" << batterytopicstring << "]";
             } else qDebug() << "OK: MQTT: subscribed on Topic[" << batterytopicstring << "]";
         }
-    }
+    }*/
 }

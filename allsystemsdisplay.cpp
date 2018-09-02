@@ -32,19 +32,19 @@ void AllSysDisplay::paintEvent(QPaintEvent *)
 	painter.drawRect(0, 0, ALLSYS_DISPLAY_WIDTH, ALLSYS_DISPLAY_HEIGHT);
 
 	communication = new SysIndicator(this, "COM");
-	communication->setGeometry(10, 40, SYS_INDICATOR_WIDTH+2, SYS_INDICATOR_HEIGHT+2);
+    communication->setGeometry(10, 49, SYS_INDICATOR_WIDTH+2, SYS_INDICATOR_HEIGHT+2);
 	communication->show();
 
 	batteries = new SysIndicator(this, "Batteries");
-	batteries->setGeometry(10, 80, SYS_INDICATOR_WIDTH+2, SYS_INDICATOR_HEIGHT+2);
+    batteries->setGeometry(115, 49, SYS_INDICATOR_WIDTH+2, SYS_INDICATOR_HEIGHT+2);
 	batteries->show();
 
-	motors = new SysIndicator(this, "Motors");
-	motors->setGeometry(115, 40, SYS_INDICATOR_WIDTH+2, SYS_INDICATOR_HEIGHT+2);
+    motors = new SysIndicator(this, "Mobility");
+    motors->setGeometry(220, 49, SYS_INDICATOR_WIDTH+2, SYS_INDICATOR_HEIGHT+2);
 	motors->show();
 
 	arm = new SysIndicator(this, "Arm");
-	arm->setGeometry(115, 80, SYS_INDICATOR_WIDTH+2, SYS_INDICATOR_HEIGHT+2);
+    arm->setGeometry(325, 49, SYS_INDICATOR_WIDTH+2, SYS_INDICATOR_HEIGHT+2);
 	arm->show();
 
 
