@@ -72,9 +72,9 @@ void UltrasonicSensorIndicator::paintEvent(QPaintEvent *)
     int startPoint_Y_value = (( this->height() - (this->height() * (percentage))) / 2);
     painter.setPen(pieColor_gray);         // GRAY
     painter.setBrush(pieColor_gray);
-    QRect pieRec_value(startPoint_X_value-2, startPoint_Y_value-2, (percentage*ULTRASONIC_PIE_WIDTH)+3, (percentage*ULTRASONIC_PIE_HEIGHT)+3);
-    if (!oblique) painter.drawPie(pieRec_value, (direction * 1440) - 42, 86);
-    else painter.drawPie(pieRec_value, (direction * 1440) + 720 - 42, 90);
+    QRect pieRec_value(startPoint_X_value, startPoint_Y_value, (percentage*ULTRASONIC_PIE_WIDTH), (percentage*ULTRASONIC_PIE_HEIGHT));
+    if (!oblique) painter.drawPie(pieRec_value, (direction * 1440) - 42, 84);
+    else painter.drawPie(pieRec_value, (direction * 1440) + 720 - 42, 84);
 
     // switch (status)
     // {

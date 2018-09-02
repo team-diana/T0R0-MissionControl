@@ -60,7 +60,7 @@ void UltrasonicDisplay::paintEvent(QPaintEvent *)
     borderpen.setWidth(3);
     painter.setPen(borderpen);
     painter.setBrush(QColor(0,0,0,0));
-    painter.drawRect(0, 0, this->width(), this->height());
+    painter.drawRect(0, 0, this->width()-1, this->height()-1);
 
     QLabel *pixlabel = new QLabel(this);
     QPixmap pixrover(":/Images/rover_up-230x374.png");
