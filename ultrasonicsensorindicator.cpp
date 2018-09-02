@@ -123,7 +123,8 @@ void UltrasonicSensorIndicator::paintEvent(QPaintEvent *)
 
 void UltrasonicSensorIndicator::setStatus(int _status)
 {
-    status = _status;
+    percentage = (float) _status/100.0;
+    qDebug() << "percentage" << percentage;
     this->update();
 }
 //void setDirection( int direction);
