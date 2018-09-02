@@ -57,13 +57,20 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     usDisplay = new UltrasonicDisplay(this);
     usDisplay->setGeometry( (this->width() / 2) - (ULTRASONIC_WIDTH/2), (this->height() / 2) - (ULTRASONIC_HEIGHT/2), ULTRASONIC_WIDTH, ULTRASONIC_HEIGHT);
 
+    vescDisplay = new VescDisplay(this);
+    //setGeometry
+
     connect(m_mqttHarbinger, &MqttHarbinger::batteryChargeEvent,          batterydisplay, &BatteryDisplay::batteryChargeUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::batteryVoltageEvent,         batterydisplay, &BatteryDisplay::batteryVoltageUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::batteryTemperatureEvent,     batterydisplay, &BatteryDisplay::batteryTemperatureUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::batteryCurrentEvent,         batterydisplay, &BatteryDisplay::batteryCurrentUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::ultrasonicSensorStatusEvent, usDisplay,      &UltrasonicDisplay::ultrasonicSensorStatusUpdate);
-
-
+    connect(m_mqttHarbinger, &MqttHarbinger::vescErpmEvent,               vescDisplay,    &VescDisplay::vescErpmUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::vescCurrent_motorEvent,      vescDisplay,    &VescDisplay::vescCurrent_motorUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::vescCurrent_inputEvent,      vescDisplay,    &VescDisplay::vescCurrent_inputUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::vescVoltage_inputEvent,      vescDisplay,    &VescDisplay::vescVoltage_inputUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::vescTemperature_mos1Event,   vescDisplay,    &VescDisplay::vescTemperature_mos1Update);
+    connect(m_mqttHarbinger, &MqttHarbinger::vescTemperature_motorEvent,  vescDisplay,    &VescDisplay::vescTemperature_motorUpdate);
 }
 
 MainWindow::~MainWindow(){

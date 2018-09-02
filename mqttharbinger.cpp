@@ -42,8 +42,16 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
             {
                 emit ultrasonicSensorStatusEvent(query.at(1).toInt(), message.toInt());
             }
+            else if (query.at(0) == "vesc")
+            {
+                if      (query.at(2) == "erpm")                 emit vescErpmEvent (query.at(1).toInt(), message.toFloat());
+                else if (query.at(2) == "current_motor")        emit vescCurrent_motorEvent (query.at(1).toInt(), message.toFloat());
+                else if (query.at(2) == "current_input")        emit vescCurrent_inputEvent (query.at(1).toInt(), message.toFloat());
+                else if (query.at(2) == "voltage_input")        emit vescVoltage_inputEvent (query.at(1).toInt(), message.toFloat());
+                else if (query.at(2) == "temperature_mos1")     emit vescTemperature_mos1Event (query.at(1).toInt(), message.toFloat());
+                else if (query.at(2) == "temperature_motor")    emit vescTemperature_motorEvent (query.at(1).toInt(), message.toFloat());
+            }
 
-            // if (query.at(0) == "battery") emit mqttBatteryEvent (query.at(1).toInt(), query.at(2), message);
     });
 
 }
@@ -59,6 +67,7 @@ void MqttHarbinger::testMqtt ()
 
     batterySubscription();
     ultrasonicSensorSubscription();
+    vescSubscription();
 
     QString connectionMessage = "["
             + QDateTime::currentDateTime().toString()
@@ -71,6 +80,12 @@ void MqttHarbinger::testMqtt ()
 void MqttHarbinger::ultrasonicSensorSubscription()
 {
     QString topicString("ultrasonicSensor/#");
+    m_client->subscribe(topicString);
+}
+
+
+void MqttHarbinger::vescSubscription(){
+    QString topicString("vesc/#");
     m_client->subscribe(topicString);
 }
 
