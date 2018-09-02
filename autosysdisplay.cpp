@@ -19,7 +19,7 @@ void AutoSysDisplay::paintEvent(QPaintEvent *)
 	m_gradient.setColorAt(1.0, QColor(10, 10, 10, 255));
 	painter.fillRect(QRect(0, 0, AUTOSYS_DISPLAY_WIDTH, AUTOSYS_DISPLAY_HEIGHT), m_gradient);
 
-    QColor theme (137, 108, 254);
+    QColor theme (205, 106, 255);
     //painter.setPen(pale_violet);
     painter.setPen(theme);
 	painter.drawText(1, 17, "Autonomous System");
