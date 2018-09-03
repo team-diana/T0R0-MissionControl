@@ -59,7 +59,7 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
 void MqttHarbinger::testMqtt ()
 {
     qDebug() << "MQTT CONNESSO";
-    QString batterytopicstring ("diagnosys");
+    QString batterytopicstring ("diagnostics");
     auto subscription = m_client->subscribe(batterytopicstring);
     if (!subscription) {
         qDebug() << "Error: MQTT subscription";
