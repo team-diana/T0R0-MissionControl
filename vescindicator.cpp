@@ -11,7 +11,7 @@ vescIndicator::vescIndicator(QWidget *parent, int id) : QWidget(parent){
     this->temperature_motor = 0;
 }
 
-void vescIndicator::paintEvent(QPaintEvent *event){    
+void vescIndicator::paintEvent(QPaintEvent *event){
     QPainter painter(this);
     painter.fillRect(QRect(0, 0, VESC_INDICATOR_DISPLAY_WIDTH, VESC_INDICATOR_DISPLAY_HEIGHT), QColor(10,10,10,255));
 
@@ -21,7 +21,7 @@ void vescIndicator::paintEvent(QPaintEvent *event){
     //painter.setPen(QColor(109,123,192));		// Purple
     //painter.setPen(QColor(255,255,255));		// White
     QString text;
-    text.sprintf("VESC#%d - ", this->id);
+    text.sprintf("VESC %d - ", this->id+1);
     text.append(vescPos[this->id]);
     painter.drawText(1, 17, text);
 
@@ -33,37 +33,37 @@ void vescIndicator::paintEvent(QPaintEvent *event){
     qDebug() << "ERPM " << this->erpm;
     painter.setPen(QColor(222, 61, 25));// 255,0,0,255));
     ValueString.sprintf("ERPM %2.3f", this->erpm);
-    painter.drawText(QRect(2, 20, 120, 30), Qt::AlignLeft, ValueString);
+    painter.drawText(QRect(2, 20, 220, 65), Qt::AlignLeft, ValueString);
 
     ValueString.begin();
     qDebug() << "CURRENT_MOTOR " << this->current_motor;
     painter.setPen(QColor(222, 61, 25));// 255,0,0,255));
-    ValueString.sprintf("A_MOT %2.3f", this->current_motor);
-    painter.drawText(QRect(2, 35, 120, 30), Qt::AlignLeft, ValueString);
+    ValueString.sprintf("MOTOR CURRENT %2.2f", this->current_motor);
+    painter.drawText(QRect(2, 40, 220, 65), Qt::AlignLeft, ValueString);
 
     ValueString.begin();
     qDebug() << "CURRENT_INPUT " << this->current_input;
     painter.setPen(QColor(222, 61, 25));// 255,0,0,255));
-    ValueString.sprintf("A_INP %2.3f", this->current_input);
-    painter.drawText(QRect(2, 50, 120, 30), Qt::AlignLeft, ValueString);
+    ValueString.sprintf("INPUT CURRENT %2.2f", this->current_input);
+    painter.drawText(QRect(2, 60, 220, 65), Qt::AlignLeft, ValueString);
 
     ValueString.begin();
     qDebug() << "VOLTAGE_INPUT " << this->voltage_input;
     painter.setPen(QColor(222, 61, 25));// 255,0,0,255));
-    ValueString.sprintf("V_INP %2.3f", this->voltage_input);
-    painter.drawText(QRect(125, 20, 120, 30), Qt::AlignLeft, ValueString);
+    ValueString.sprintf("INPUT VOLTAGE %2.2f", this->voltage_input);
+    painter.drawText(QRect(190, 20, 220, 65), Qt::AlignLeft, ValueString);
 
     ValueString.begin();
     qDebug() << "TEMPERATURE_MOS1 " << this->temperature_mos1;
     painter.setPen(QColor(222, 61, 25));// 255,0,0,255));
-    ValueString.sprintf("T_MOS %2.3f", this->temperature_mos1);
-    painter.drawText(QRect(125, 35, 120, 30), Qt::AlignLeft, ValueString);
+    ValueString.sprintf("MOS TEMP %2.2f", this->temperature_mos1);
+    painter.drawText(QRect(190, 40, 220, 65), Qt::AlignLeft, ValueString);
 
     ValueString.begin();
     qDebug() << "TEMPERATURE_MOTOR " << this->temperature_motor;
     painter.setPen(QColor(222, 61, 25));// 255,0,0,255));
-    ValueString.sprintf("T_MOT %2.3f", this->temperature_motor);
-    painter.drawText(QRect(125, 50, 120, 30), Qt::AlignLeft, ValueString);
+    ValueString.sprintf("MOTOR TEMP %2.2f", this->temperature_motor);
+    painter.drawText(QRect(190, 60, 220, 65), Qt::AlignLeft, ValueString);
 }
 
 void vescIndicator::setErpm(float _erpm){

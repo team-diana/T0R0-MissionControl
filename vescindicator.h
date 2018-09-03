@@ -5,11 +5,11 @@
 #include <QPainter>
 #include <QFont>
 
-#define VESC_INDICATOR_DISPLAY_WIDTH 300
+#define VESC_INDICATOR_DISPLAY_WIDTH 400
 #define VESC_INDICATOR_DISPLAY_HEIGHT 80
 
 //set the vesc position
-const QString vescPos[] = {"front_left", "front_right", "back_left", "back_right"};
+const QString vescPos[] = {"FRONT LEFT", "REAR LEFT", "FRONT RIGHT", "REAR RIGHT"};
 
 class vescIndicator : public QWidget
 {
