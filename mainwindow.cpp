@@ -42,7 +42,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     batterydisplay->setGeometry(BAT_DISPLAY_POSX, BAT_DISPLAY_POSY, BAT_DISPLAY_WIDTH + 2, BAT_DISPLAY_HEIGHT + 2);
 
     statusdisplay = new StatusDisplay(this);
-    statusdisplay->setGeometry(STATUS_DISPLAY_POSX, (this->height() - STATUS_DISPLAY_HEIGHT) / 2, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
+    statusdisplay->setGeometry(STATUS_DISPLAY_POSX, STATUS_DISPLAY_POSY, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
+    //statusdisplay->setGeometry(STATUS_DISPLAY_POSX, (this->height() - STATUS_DISPLAY_HEIGHT) / 2, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
 
     autosysdisplay = new AutoSysDisplay(this);
     autosysdisplay->setGeometry(AUTOSYS_DISPLAY_POSX, AUTOSYS_DISPLAY_POSY, AUTOSYS_DISPLAY_WIDTH + 2, AUTOSYS_DISPLAY_HEIGHT + 2);
@@ -58,7 +59,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     usDisplay->setGeometry( (this->width() / 2) - (ULTRASONIC_WIDTH/2), (this->height() / 2) - (ULTRASONIC_HEIGHT/2), ULTRASONIC_WIDTH, ULTRASONIC_HEIGHT);
 
     vescDisplay = new VescDisplay(this);
-    //setGeometry
+    vescDisplay->setGeometry(VESC_DISPLAY_POSX, VESC_DISPLAY_POSY, VESC_DISPLAY_WIDTH + 2, VESC_DISPLAY_HEIGHT + 2);
 
     connect(m_mqttHarbinger, &MqttHarbinger::batteryChargeEvent,          batterydisplay, &BatteryDisplay::batteryChargeUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::batteryVoltageEvent,         batterydisplay, &BatteryDisplay::batteryVoltageUpdate);

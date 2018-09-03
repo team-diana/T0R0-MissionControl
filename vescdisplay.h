@@ -5,6 +5,11 @@
 #include "vescindicator.h"
 
 
+#define VESC_DISPLAY_POSX 58
+#define VESC_DISPLAY_POSY 80
+#define VESC_DISPLAY_WIDTH 350
+#define VESC_DISPLAY_HEIGHT 400
+
 class VescDisplay : public QWidget
 {
     Q_OBJECT

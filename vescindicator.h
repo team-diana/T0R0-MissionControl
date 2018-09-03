@@ -5,8 +5,11 @@
 #include <QPainter>
 #include <QFont>
 
-#define VESC_PIE_WIDTH 450    // Probably modifiyng this value will make glitches # ISSUE
-#define VESC_PIE_HEIGHT 450  // Probably modifiyng this value will make glitches  # ISSUE
+#define VESC_INDICATOR_DISPLAY_WIDTH 300
+#define VESC_INDICATOR_DISPLAY_HEIGHT 80
+
+//set the vesc position
+const QString vescPos[] = {"front_left", "front_right", "back_left", "back_right"};
 
 class vescIndicator : public QWidget
 {
