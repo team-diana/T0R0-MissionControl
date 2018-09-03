@@ -7,9 +7,9 @@
 #include "statusdisplay.h"
 
 #define STATUS_DISPLAY_POSX 58
-#define STATUS_DISPLAY_POSY 100
+#define STATUS_DISPLAY_POSY 500
 #define STATUS_DISPLAY_WIDTH 350
-#define STATUS_DISPLAY_HEIGHT 700
+#define STATUS_DISPLAY_HEIGHT 400
 
 class StatusDisplay : public QWidget
 {

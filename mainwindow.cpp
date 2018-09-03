@@ -42,7 +42,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     batterydisplay->setGeometry(BAT_DISPLAY_POSX, BAT_DISPLAY_POSY, BAT_DISPLAY_WIDTH + 2, BAT_DISPLAY_HEIGHT + 2);
 
     statusdisplay = new StatusDisplay(this);
-    statusdisplay->setGeometry(STATUS_DISPLAY_POSX, (this->height() - STATUS_DISPLAY_HEIGHT) / 2, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
+    statusdisplay->setGeometry(STATUS_DISPLAY_POSX, STATUS_DISPLAY_POSY, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
+    //statusdisplay->setGeometry(STATUS_DISPLAY_POSX, (this->height() - STATUS_DISPLAY_HEIGHT) / 2, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
 
     autosysdisplay = new AutoSysDisplay(this);
     autosysdisplay->setGeometry(AUTOSYS_DISPLAY_POSX, AUTOSYS_DISPLAY_POSY, AUTOSYS_DISPLAY_WIDTH + 2, AUTOSYS_DISPLAY_HEIGHT + 2);
@@ -57,13 +58,20 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     usDisplay = new UltrasonicDisplay(this);
     usDisplay->setGeometry( (this->width() / 2) - (ULTRASONIC_WIDTH/2), (this->height() / 2) - (ULTRASONIC_HEIGHT/2), ULTRASONIC_WIDTH, ULTRASONIC_HEIGHT);
 
+    vescDisplay = new VescDisplay(this);
+    vescDisplay->setGeometry(VESC_DISPLAY_POSX, VESC_DISPLAY_POSY, VESC_DISPLAY_WIDTH + 2, VESC_DISPLAY_HEIGHT + 2);
+
     connect(m_mqttHarbinger, &MqttHarbinger::batteryChargeEvent,          batterydisplay, &BatteryDisplay::batteryChargeUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::batteryVoltageEvent,         batterydisplay, &BatteryDisplay::batteryVoltageUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::batteryTemperatureEvent,     batterydisplay, &BatteryDisplay::batteryTemperatureUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::batteryCurrentEvent,         batterydisplay, &BatteryDisplay::batteryCurrentUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::ultrasonicSensorStatusEvent, usDisplay,      &UltrasonicDisplay::ultrasonicSensorStatusUpdate);
-
-
+    connect(m_mqttHarbinger, &MqttHarbinger::vescErpmEvent,               vescDisplay,    &VescDisplay::vescErpmUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::vescCurrent_motorEvent,      vescDisplay,    &VescDisplay::vescCurrent_motorUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::vescCurrent_inputEvent,      vescDisplay,    &VescDisplay::vescCurrent_inputUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::vescVoltage_inputEvent,      vescDisplay,    &VescDisplay::vescVoltage_inputUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::vescTemperature_mos1Event,   vescDisplay,    &VescDisplay::vescTemperature_mos1Update);
+    connect(m_mqttHarbinger, &MqttHarbinger::vescTemperature_motorEvent,  vescDisplay,    &VescDisplay::vescTemperature_motorUpdate);
 }
 
 MainWindow::~MainWindow(){
