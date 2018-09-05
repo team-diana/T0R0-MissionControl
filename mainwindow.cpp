@@ -41,8 +41,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     batterydisplay = new BatteryDisplay(this);
     batterydisplay->setGeometry(BAT_DISPLAY_POSX, BAT_DISPLAY_POSY, BAT_DISPLAY_WIDTH + 2, BAT_DISPLAY_HEIGHT + 2);
 
-    statusdisplay = new StatusDisplay(this);
-    statusdisplay->setGeometry(STATUS_DISPLAY_POSX, STATUS_DISPLAY_POSY, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
+    //statusdisplay = new StatusDisplay(this);
+    //statusdisplay->setGeometry(STATUS_DISPLAY_POSX, STATUS_DISPLAY_POSY, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
     //statusdisplay->setGeometry(STATUS_DISPLAY_POSX, (this->height() - STATUS_DISPLAY_HEIGHT) / 2, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
 
     autosysdisplay = new AutoSysDisplay(this);
@@ -54,12 +54,15 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     allsysdisplay = new AllSysDisplay(this);
     allsysdisplay->setGeometry( ((this->width() / 2) - (ALLSYS_DISPLAY_WIDTH / 2)), ALLSYS_DISPLAY_POSY, ALLSYS_DISPLAY_WIDTH + 2, ALLSYS_DISPLAY_HEIGHT + 2);
 
-    // Show Ultrasonic Display
     usDisplay = new UltrasonicDisplay(this);
     usDisplay->setGeometry( (this->width() / 2) - (ULTRASONIC_WIDTH/2), (this->height() / 2) - (ULTRASONIC_HEIGHT/2), ULTRASONIC_WIDTH, ULTRASONIC_HEIGHT);
 
+    scienceDisplay = new scientificDisplay(this);
+    scienceDisplay->setGeometry(SCIENTIFIC_DISPLAY_POSX, SCIENTIFIC_DISPLAY_POSY, SCIENTIFIC_DISPLAY_WIDTH + 2, SCIENTIFIC_DISPLAY_HEIGHT + 2);
+
     vescDisplay = new VescDisplay(this);
     vescDisplay->setGeometry(VESC_DISPLAY_POSX, VESC_DISPLAY_POSY, VESC_DISPLAY_WIDTH + 2, VESC_DISPLAY_HEIGHT + 2);
+
 
     connect(m_mqttHarbinger, &MqttHarbinger::batteryChargeEvent,          batterydisplay, &BatteryDisplay::batteryChargeUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::batteryVoltageEvent,         batterydisplay, &BatteryDisplay::batteryVoltageUpdate);
@@ -72,6 +75,12 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     connect(m_mqttHarbinger, &MqttHarbinger::vescVoltage_inputEvent,      vescDisplay,    &VescDisplay::vescVoltage_inputUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::vescTemperature_mos1Event,   vescDisplay,    &VescDisplay::vescTemperature_mos1Update);
     connect(m_mqttHarbinger, &MqttHarbinger::vescTemperature_motorEvent,  vescDisplay,    &VescDisplay::vescTemperature_motorUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_cargoBayTemperatureEvent,   scienceDisplay, &scientificDisplay::cargoBayTemperatureUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_cargoBayHumidityEvent,      scienceDisplay, &scientificDisplay::cargoBayHumidityUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_cargoBayWeightEvent,        scienceDisplay, &scientificDisplay::cargoBayWeightUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_drillWeightEvent,           scienceDisplay, &scientificDisplay::drillWeightUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityArmSensorEvent,    scienceDisplay, &scientificDisplay::proximityArmSensorUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityTurretSensorEvent, scienceDisplay, &scientificDisplay::proximityTurretSensorUpdate);
 }
 
 MainWindow::~MainWindow(){

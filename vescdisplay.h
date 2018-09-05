@@ -1,8 +1,9 @@
 #ifndef VESCDISPLAY_H
 #define VESCDISPLAY_H
 
-#include <QWidget>
 #include "vescindicator.h"
+#include <QWidget>
+#include <QPainter>
 
 
 #define VESC_DISPLAY_POSX 58

@@ -17,6 +17,7 @@
 #include "allsystemsdisplay.h"
 #include "ultrasonicdisplay.h"
 #include "vescdisplay.h"
+#include "scientificdisplay.h"
 
 #include <QLabel>
 
@@ -55,6 +56,7 @@ private:
     AutoSysDisplay *autosysdisplay;
     RadioDisplay *radiodisplay;
     VescDisplay *vescDisplay;
+    scientificDisplay *scienceDisplay;
 
 };
 
