@@ -1,48 +1,48 @@
 #include "scientificdisplay.h"
 #include <QDebug>
 
-scientificDisplay::scientificDisplay(QWidget *parent) : QWidget(parent) {
+ScientificDisplay::ScientificDisplay(QWidget *parent) : QWidget(parent) {
     int i;
     for(i=0; i<3; i++){
-        cargoInd[i] = new cargoBayIndicator(this, i);
+        cargoInd[i] = new CargoBayIndicator(this, i);
     }
     for(i=0; i<2; i++){
-        drillInd[i] = new drillIndicator(this, i);
+        drillInd[i] = new DrillIndicator(this, i);
     }
-    proxInd = new proximitySensorIndicator(this);
+    proxInd = new ProximitySensorIndicator(this);
 }
 
-void scientificDisplay::cargoBayWeightUpdate(int ID, float weight){
+void ScientificDisplay::cargoBayWeightUpdate(int ID, float weight){
     qDebug() << "CARGO_BAY" << ID << " [WEIGHT] > " << weight;
     if(ID < 3) cargoInd[ID]->setWeight(weight);
 }
 
-void scientificDisplay::cargoBayHumidityUpdate(int ID, float humidity){
+void ScientificDisplay::cargoBayHumidityUpdate(int ID, float humidity){
     qDebug() << "CARGO_BAY" << ID << " [HUMIDITY] > " << humidity;
     if(ID < 3) cargoInd[ID]->setHumidity(humidity);
 }
 
-void scientificDisplay::cargoBayTemperatureUpdate(int ID, float temperature){
+void ScientificDisplay::cargoBayTemperatureUpdate(int ID, float temperature){
     qDebug() << "CARGO_BAY" << ID << " [TEMPERATURE] > " << temperature;
     if(ID < 3) cargoInd[ID]->setTemperature(temperature);
 }
 
-void scientificDisplay::drillWeightUpdate(int ID, float weight){
+void ScientificDisplay::drillWeightUpdate(int ID, float weight){
     qDebug() << "DRILL" << ID << " [WEIGHT] > " << weight;
     if(ID < 3) drillInd[ID]->setWeight(weight);
 }
 
-void scientificDisplay::proximityArmSensorUpdate(float armSensorValue){
+void ScientificDisplay::proximityArmSensorUpdate(float armSensorValue){
     qDebug() << "PROXIMITY_SENSOR" << " [ARM_SENSOR] > " << armSensorValue;
     proxInd->setArmSensor(armSensorValue);
 }
 
-void scientificDisplay::proximityTurretSensorUpdate(float turretSensorValue){
+void ScientificDisplay::proximityTurretSensorUpdate(float turretSensorValue){
     qDebug() << "PROXIMITY_SENSOR" << " [TURRET_SENSOR] > " << turretSensorValue;
     proxInd->setTurretSensor(turretSensorValue);
 }
 
-void scientificDisplay::paintEvent (QPaintEvent *){
+void ScientificDisplay::paintEvent (QPaintEvent *){
     QPainter painter(this);
 
     painter.setBrush(QColor(255,0,0,255));  // Initialize red color for debugging purpouses

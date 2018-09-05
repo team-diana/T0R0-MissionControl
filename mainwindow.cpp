@@ -57,7 +57,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     usDisplay = new UltrasonicDisplay(this);
     usDisplay->setGeometry( (this->width() / 2) - (ULTRASONIC_WIDTH/2), (this->height() / 2) - (ULTRASONIC_HEIGHT/2), ULTRASONIC_WIDTH, ULTRASONIC_HEIGHT);
 
-    scienceDisplay = new scientificDisplay(this);
+    scienceDisplay = new ScientificDisplay(this);
     scienceDisplay->setGeometry(SCIENTIFIC_DISPLAY_POSX, SCIENTIFIC_DISPLAY_POSY, SCIENTIFIC_DISPLAY_WIDTH + 2, SCIENTIFIC_DISPLAY_HEIGHT + 2);
 
     vescDisplay = new VescDisplay(this);
@@ -75,12 +75,12 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     connect(m_mqttHarbinger, &MqttHarbinger::vescVoltage_inputEvent,      vescDisplay,    &VescDisplay::vescVoltage_inputUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::vescTemperature_mos1Event,   vescDisplay,    &VescDisplay::vescTemperature_mos1Update);
     connect(m_mqttHarbinger, &MqttHarbinger::vescTemperature_motorEvent,  vescDisplay,    &VescDisplay::vescTemperature_motorUpdate);
-    connect(m_mqttHarbinger, &MqttHarbinger::scientific_cargoBayTemperatureEvent,   scienceDisplay, &scientificDisplay::cargoBayTemperatureUpdate);
-    connect(m_mqttHarbinger, &MqttHarbinger::scientific_cargoBayHumidityEvent,      scienceDisplay, &scientificDisplay::cargoBayHumidityUpdate);
-    connect(m_mqttHarbinger, &MqttHarbinger::scientific_cargoBayWeightEvent,        scienceDisplay, &scientificDisplay::cargoBayWeightUpdate);
-    connect(m_mqttHarbinger, &MqttHarbinger::scientific_drillWeightEvent,           scienceDisplay, &scientificDisplay::drillWeightUpdate);
-    connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityArmSensorEvent,    scienceDisplay, &scientificDisplay::proximityArmSensorUpdate);
-    connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityTurretSensorEvent, scienceDisplay, &scientificDisplay::proximityTurretSensorUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_cargoBayTemperatureEvent,   scienceDisplay, &ScientificDisplay::cargoBayTemperatureUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_cargoBayHumidityEvent,      scienceDisplay, &ScientificDisplay::cargoBayHumidityUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_cargoBayWeightEvent,        scienceDisplay, &ScientificDisplay::cargoBayWeightUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_drillWeightEvent,           scienceDisplay, &ScientificDisplay::drillWeightUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityArmSensorEvent,    scienceDisplay, &ScientificDisplay::proximityArmSensorUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityTurretSensorEvent, scienceDisplay, &ScientificDisplay::proximityTurretSensorUpdate);
 }
 
 MainWindow::~MainWindow(){

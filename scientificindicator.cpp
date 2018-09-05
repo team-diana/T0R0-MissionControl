@@ -1,69 +1,69 @@
 #include <QDebug>
 #include "scientificindicator.h"
 
-cargoBayIndicator::cargoBayIndicator(QWidget *parent, int id) : QWidget(parent){
+CargoBayIndicator::CargoBayIndicator(QWidget *parent, int id) : QWidget(parent){
     this->id = id;
     this->humidity = 0;
     this->temperature = 0;
     this->weight = 0;
 }
 
-void cargoBayIndicator::paintEvent(QPaintEvent *event){
+void CargoBayIndicator::paintEvent(QPaintEvent *event){
 
 }
 
-void cargoBayIndicator::setHumidity(float _humidity){
+void CargoBayIndicator::setHumidity(float _humidity){
     qDebug() << "humidity " << _humidity;
     this->humidity = _humidity;
     this->update();
 }
 
-void cargoBayIndicator::setTemperature(float _temperature){
+void CargoBayIndicator::setTemperature(float _temperature){
     qDebug() << "temperature " << _temperature;
     this->temperature = _temperature;
     this->update();
 }
 
-void cargoBayIndicator::setWeight(float _weight){
+void CargoBayIndicator::setWeight(float _weight){
     qDebug() << "weight " << _weight;
     this->weight = _weight;
     this->update();
 }
 
-drillIndicator::drillIndicator(QWidget *parent, int id) : QWidget(parent){
+DrillIndicator::DrillIndicator(QWidget *parent, int id) : QWidget(parent){
     this->id = id;
     this->weight = 0;
 }
 
-void drillIndicator::paintEvent(QPaintEvent *event){
+void DrillIndicator::paintEvent(QPaintEvent *event){
 
 }
 
 
-void drillIndicator::setWeight(float _weight){
+void DrillIndicator::setWeight(float _weight){
     qDebug() << "weight " << _weight;
     this->weight = _weight;
     this->update();
 }
 
-proximitySensorIndicator::proximitySensorIndicator(QWidget *parent) : QWidget(parent){
+ProximitySensorIndicator::ProximitySensorIndicator(QWidget *parent) : QWidget(parent){
     this->armSensor = 0;
     this->turretSensor = 0;
 }
 
-void proximitySensorIndicator::setArmSensor(float _armSensor){
+void ProximitySensorIndicator::setArmSensor(float _armSensor){
     qDebug() << "armSensor " << _armSensor;
     this->armSensor = _armSensor;
     this->update();
 }
 
-void proximitySensorIndicator::setTurretSensor(float _turretSensor){
+void ProximitySensorIndicator::setTurretSensor(float _turretSensor){
     qDebug() << "turretSensor " << _turretSensor;
     this->turretSensor = _turretSensor;
     this->update();
 }
 
-void proximitySensorIndicator::paintEvent(QPaintEvent *event){
+void ProximitySensorIndicator::paintEvent(QPaintEvent *event){
 
 }
 

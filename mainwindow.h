@@ -56,7 +56,7 @@ private:
     AutoSysDisplay *autosysdisplay;
     RadioDisplay *radiodisplay;
     VescDisplay *vescDisplay;
-    scientificDisplay *scienceDisplay;
+    ScientificDisplay *scienceDisplay;
 
 };
 

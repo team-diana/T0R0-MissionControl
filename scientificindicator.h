@@ -8,12 +8,12 @@
 #define SCIENTIFIC_INDICATOR_DISPLAY_WIDTH 150
 #define SCIENTIFIC_INDICATOR_DISPLAY_HEIGHT 80
 
-class cargoBayIndicator : public QWidget
+class CargoBayIndicator : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit  cargoBayIndicator(QWidget *parent = nullptr, int id = -1);
+    explicit  CargoBayIndicator(QWidget *parent = nullptr, int id = -1);
     void setWeight(float _weight);
     void setHumidity(float _humidity);
     void setTemperature(float _temperature);
@@ -29,12 +29,12 @@ private:
 
 };
 
-class drillIndicator : public QWidget
+class DrillIndicator : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit  drillIndicator(QWidget *parent = nullptr, int id = -1);
+    explicit  DrillIndicator(QWidget *parent = nullptr, int id = -1);
     void setWeight(float _weight);
 
 protected:
@@ -45,12 +45,12 @@ private:
     float weight;
 };
 
-class proximitySensorIndicator : public QWidget
+class ProximitySensorIndicator : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit  proximitySensorIndicator(QWidget *parent = nullptr);
+    explicit  ProximitySensorIndicator(QWidget *parent = nullptr);
     void setArmSensor(float _armSensor);
     void setTurretSensor(float _turretSensor);
 

@@ -10,12 +10,12 @@
 #define SCIENTIFIC_DISPLAY_WIDTH 600
 #define SCIENTIFIC_DISPLAY_HEIGHT 600
 
-class scientificDisplay : public QWidget
+class ScientificDisplay : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit scientificDisplay(QWidget *parent = nullptr);
+    explicit ScientificDisplay(QWidget *parent = nullptr);
 
 public slots:
 
@@ -30,9 +30,9 @@ protected:
     void paintEvent (QPaintEvent *event) Q_DECL_OVERRIDE;
 
 private:
-    cargoBayIndicator *cargoInd[3];
-    drillIndicator *drillInd[2];
-    proximitySensorIndicator *proxInd;
+    CargoBayIndicator *cargoInd[3];
+    DrillIndicator *drillInd[2];
+    ProximitySensorIndicator *proxInd;
 };
 
 #endif // SCIENTIFICDISPLAY_H
