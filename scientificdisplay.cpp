@@ -1,6 +1,7 @@
 #include "scientificdisplay.h"
 #include <QDebug>
-scientificDisplay::scientificDisplay(QWidget *parent){
+
+scientificDisplay::scientificDisplay(QWidget *parent) : QWidget(parent) {
     int i;
     for(i=0; i<3; i++){
         cargoInd[i] = new cargoBayIndicator(this, i);
