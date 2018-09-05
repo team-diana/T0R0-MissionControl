@@ -1,6 +1,10 @@
 #include <QDebug>
 #include "scientificindicator.h"
 
+/**
+    Carbo Bay Indicator
+*/
+
 CargoBayIndicator::CargoBayIndicator(QWidget *parent, int id) : QWidget(parent){
     this->id = id;
     this->humidity = 0;
@@ -30,6 +34,10 @@ void CargoBayIndicator::setWeight(float _weight){
     this->update();
 }
 
+/**
+    Drill Indicator
+*/
+
 DrillIndicator::DrillIndicator(QWidget *parent, int id) : QWidget(parent){
     this->id = id;
     this->weight = 0;
@@ -45,6 +53,10 @@ void DrillIndicator::setWeight(float _weight){
     this->weight = _weight;
     this->update();
 }
+
+/**
+    Proximity Sensor Indicator
+*/
 
 ProximitySensorIndicator::ProximitySensorIndicator(QWidget *parent) : QWidget(parent){
     this->armSensor = 0;
