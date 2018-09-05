@@ -43,6 +43,10 @@ void scientificDisplay::proximityTurretSensorUpdate(float turretSensorValue){
 
 void scientificDisplay::paintEvent (QPaintEvent *){
     QPainter painter(this);
+
+    painter.setBrush(QColor(255,0,0,255));  // Initialize red color for debugging purpouses
+    painter.setPen(QColor(255,0,0,255));   // Initialize red color for debugging purpouses
+
     painter.fillRect(QRect(0, 0, SCIENTIFIC_DISPLAY_WIDTH, SCIENTIFIC_DISPLAY_HEIGHT), QColor(10,10,10,255));
 
     painter.setPen(QColor(86,193,249));
