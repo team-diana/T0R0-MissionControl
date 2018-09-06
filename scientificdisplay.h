@@ -6,9 +6,9 @@
 #include "scientificindicator.h"
 
 #define SCIENTIFIC_DISPLAY_POSX 58
-#define SCIENTIFIC_DISPLAY_POSY 300
-#define SCIENTIFIC_DISPLAY_WIDTH 600
-#define SCIENTIFIC_DISPLAY_HEIGHT 600
+#define SCIENTIFIC_DISPLAY_POSY 500
+#define SCIENTIFIC_DISPLAY_WIDTH 500
+#define SCIENTIFIC_DISPLAY_HEIGHT 300
 
 class ScientificDisplay : public QWidget
 {
@@ -23,7 +23,7 @@ public slots:
     void cargoBayHumidityUpdate(int ID, float humidity);
     void cargoBayTemperatureUpdate(int ID, float temperature);
     void drillWeightUpdate(int ID, float weight);
-    void proximityArmSensorUpdate(float armSensorValue);
+    void proximityArmSensorUpdate(float armSenqsorValue);
     void proximityTurretSensorUpdate(float turretSensorValue);
 
 protected:

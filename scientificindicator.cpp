@@ -1,8 +1,9 @@
 #include <QDebug>
 #include "scientificindicator.h"
+#include <QCoreApplication>
 
 /**
-    Carbo Bay Indicator
+    Cargo Bay Indicator
 */
 
 CargoBayIndicator::CargoBayIndicator(QWidget *parent, int id) : QWidget(parent){
@@ -13,7 +14,48 @@ CargoBayIndicator::CargoBayIndicator(QWidget *parent, int id) : QWidget(parent){
 }
 
 void CargoBayIndicator::paintEvent(QPaintEvent *event){
+    QPainter painter(this);
+    painter.fillRect(QRect(0, 0, CARGO_BAY_INDICATOR_DISPLAY_WIDTH, CARGO_BAY_INDICATOR_DISPLAY_HEIGHT), QColor(10,10,10,255));
 
+    painter.setPen(QColor(86,193,249));
+
+    QString text;
+    text.sprintf("CARGO_BAY#%d", this->id + 1);
+    painter.drawText(1, 17, text);
+
+    painter.setBrush(QColor(0,0,0,0));
+    painter.drawRect(0, 0, CARGO_BAY_INDICATOR_DISPLAY_WIDTH, CARGO_BAY_INDICATOR_DISPLAY_HEIGHT);
+
+    QString ValueString;
+
+    qDebug() << "TEMPERATURE " << this->temperature;
+    painter.setPen(QColor(222, 61, 25));
+    painter.drawText(QRect(2, 20, 135, 20), Qt::AlignLeft, "TEMPERATURE");
+    ValueString.sprintf("%5.3f", this->temperature);
+    painter.drawText(QRect(110, 20, 220, 65), Qt::AlignLeft, ValueString);
+
+    ValueString.begin();
+    qDebug() << "HUMIDITY " << this->humidity;
+    painter.setPen(QColor(222, 61, 25));
+    painter.drawText(QRect(2, 35, 135, 20), Qt::AlignLeft, "HUMIDITY");
+    ValueString.sprintf("%5.3f", this->humidity);
+    painter.drawText(QRect(110, 35, 220, 65), Qt::AlignLeft, ValueString);
+
+    ValueString.begin();
+    qDebug() << "WEIGHT " << this->weight;
+    painter.setPen(QColor(222, 61, 25));
+    painter.drawText(QRect(2, 50, 135, 20), Qt::AlignLeft, "WEIGHT");
+    ValueString.sprintf("%5.3f", this->weight);
+    painter.drawText(QRect(110, 50, 220, 65), Qt::AlignLeft, ValueString);
+
+    button = new QPushButton("OPEN", this);
+    button->setGeometry(QRect(QPoint(10, 70), QSize(CARGO_BAY_INDICATOR_DISPLAY_WIDTH - 20, 30)));
+    button->show();
+    connect(button, SIGNAL (pressed()), this, SLOT (buttonPressed()));
+}
+
+void CargoBayIndicator::buttonPressed(){
+    qDebug() << "PRESSED_ " << id;
 }
 
 void CargoBayIndicator::setHumidity(float _humidity){
@@ -44,6 +86,25 @@ DrillIndicator::DrillIndicator(QWidget *parent, int id) : QWidget(parent){
 }
 
 void DrillIndicator::paintEvent(QPaintEvent *event){
+    QPainter painter(this);
+    painter.fillRect(QRect(0, 0, DRILL_INDICATOR_DISPLAY_WIDTH, DRILL_INDICATOR_DISPLAY_HEIGHT), QColor(10,10,10,255));
+
+    painter.setPen(QColor(86,193,249));
+
+    QString text;
+    text.sprintf("DRILL#%d", this->id + 1);
+    painter.drawText(1, 17, text);
+
+    painter.setBrush(QColor(0,0,0,0));
+    painter.drawRect(0, 0, DRILL_INDICATOR_DISPLAY_WIDTH, DRILL_INDICATOR_DISPLAY_HEIGHT);
+
+    QString ValueString;
+
+    qDebug() << "WEIGHT " << this->weight;
+    painter.setPen(QColor(222, 61, 25));
+    painter.drawText(QRect(2, 20, 135, 20), Qt::AlignLeft, "WEIGHT");
+    ValueString.sprintf("%5.3f", this->weight);
+    painter.drawText(QRect(80, 20, 220, 65), Qt::AlignLeft, ValueString);
 
 }
 
@@ -76,67 +137,30 @@ void ProximitySensorIndicator::setTurretSensor(float _turretSensor){
 }
 
 void ProximitySensorIndicator::paintEvent(QPaintEvent *event){
-
-}
-
-/*
-void vescIndicator::paintEvent(QPaintEvent *event){
     QPainter painter(this);
-    painter.fillRect(QRect(0, 0, VESC_INDICATOR_DISPLAY_WIDTH, VESC_INDICATOR_DISPLAY_HEIGHT), QColor(10,10,10,255));
+    painter.fillRect(QRect(0, 0, PROXIMITY_SENSOR_INDICATOR_DISPLAY_WIDTH, PROXIMITY_SENSOR_INDICATOR_DISPLAY_HEIGHT), QColor(10,10,10,255));
 
-    painter.setPen(QColor(86,193,249));		// Blue vivace
-    //painter.setPen(QColor(231,176,64));		// Orange
-    //painter.setPen(QColor(186,56,51));		// Red
-    //painter.setPen(QColor(109,123,192));		// Purple
-    //painter.setPen(QColor(255,255,255));		// White
+    painter.setPen(QColor(86,193,249));
+
     QString text;
-    text.sprintf("VESC %d - ", this->id+1);
-    text.append(vescPos[this->id]);
+    text.sprintf("PROXIMITY SENSOR");
     painter.drawText(1, 17, text);
 
     painter.setBrush(QColor(0,0,0,0));
-    painter.drawRect(0, 0, VESC_INDICATOR_DISPLAY_WIDTH, VESC_INDICATOR_DISPLAY_HEIGHT);
+    painter.drawRect(0, 0, PROXIMITY_SENSOR_INDICATOR_DISPLAY_WIDTH, PROXIMITY_SENSOR_INDICATOR_DISPLAY_HEIGHT);
 
     QString ValueString;
 
-    qDebug() << "ERPM " << this->erpm;
+    qDebug() << "ARM_SENSOR " << this->armSensor;
     painter.setPen(QColor(222, 61, 25));
-    painter.drawText(QRect(2, 20, 135, 20), Qt::AlignLeft, "ERPM");
-    ValueString.sprintf("%5.3f", this->erpm);
-    painter.drawText(QRect(135, 20, 220, 65), Qt::AlignLeft, ValueString);
+    painter.drawText(QRect(2, 20, 135, 20), Qt::AlignLeft, "ARM SENSOR");
+    ValueString.sprintf("%5.3f", this->armSensor);
+    painter.drawText(QRect(140, 20, 220, 65), Qt::AlignLeft, ValueString);
 
     ValueString.begin();
-    qDebug() << "CURRENT_MOTOR " << this->current_motor;
+    qDebug() << "TURRET_SENSOR " << this->turretSensor;
     painter.setPen(QColor(222, 61, 25));
-    painter.drawText(QRect(2, 40, 135, 20), Qt::AlignLeft, "MOTOR CURRENT");
-    ValueString.sprintf("%5.3f", this->current_motor);
-    painter.drawText(QRect(135, 40, 220, 65), Qt::AlignLeft, ValueString);
-
-    ValueString.begin();
-    qDebug() << "CURRENT_INPUT " << this->current_input;
-    painter.setPen(QColor(222, 61, 25));
-    painter.drawText(QRect(2, 60, 220, 65), Qt::AlignLeft, "INPUT CURRENT");
-    ValueString.sprintf("%5.3f", this->current_input);
-    painter.drawText(QRect(135, 60, 220, 65), Qt::AlignLeft, ValueString);
-
-    ValueString.begin();
-    qDebug() << "VOLTAGE_INPUT " << this->voltage_input;
-    painter.setPen(QColor(222, 61, 25));
-    painter.drawText(QRect(190, 20, 220, 65), Qt::AlignLeft, "INPUT VOLTAGE");
-    ValueString.sprintf("%5.3f", this->voltage_input);
-    painter.drawText(QRect(325, 20, 220, 65), Qt::AlignLeft, ValueString);
-
-    ValueString.begin();
-    qDebug() << "TEMPERATURE_MOS1 " << this->temperature_mos1;
-    painter.setPen(QColor(222, 61, 25));
-    painter.drawText(QRect(190, 40, 220, 65), Qt::AlignLeft, "MOS TEMP");
-    ValueString.sprintf("%5.3f", this->temperature_mos1);
-    painter.drawText(QRect(325, 40, 220, 65), Qt::AlignLeft, ValueString);
-
-    ValueString.begin();
-    qDebug() << "TEMPERATURE_MOTOR " << this->temperature_motor;
-    painter.setPen(QColor(222, 61, 25));// 255,0,0,255));
-    painter.drawText(QRect(190, 60, 220, 65), Qt::AlignLeft, "MOTOR TEMP");
-    ValueString.sprintf("%5.3f", this->temperature_motor);
-    painter.drawText(QRect(325, 60, 220, 65), Qt::AlignLeft, ValueString);
-}*/
+    painter.drawText(QRect(2, 35, 135, 20), Qt::AlignLeft, "TURRET SENSOR");
+    ValueString.sprintf("%5.3f", this->turretSensor);
+    painter.drawText(QRect(140, 35, 220, 65), Qt::AlignLeft, ValueString);
+}
