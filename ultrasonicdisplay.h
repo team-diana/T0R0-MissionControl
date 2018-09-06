@@ -24,6 +24,7 @@ public slots:
 protected:
     void paintEvent (QPaintEvent *event) Q_DECL_OVERRIDE;
 
+
 private:
     UltrasonicSensorIndicator *usIndicator[N_ULTRASSONIC_SENSORS];
 };

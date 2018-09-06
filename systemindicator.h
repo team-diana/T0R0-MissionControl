@@ -19,6 +19,10 @@ class SysIndicator : public QWidget
 
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
+
+signals:
+    void buttonPressedEvent (int id);
+
 private:
 	QString title;
 };
