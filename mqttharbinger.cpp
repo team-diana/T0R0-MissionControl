@@ -67,6 +67,7 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
                 {
                     if(query.at(2) == "armSensor" && query.at(3) == "weight")           emit scientific_proximityArmSensorEvent (message.toFloat());
                     else if(query.at(2) == "turretSensor" && query.at(3) == "weight")   emit scientific_proximityTurretSensorEvent (message.toFloat());
+                    else if(query.at(2) == "endEffector" && query.at(3) == "weight")    emit scientific_proximityEndEffectorEvent (message.toFloat());
                 }
             }
 
@@ -119,8 +120,7 @@ void MqttHarbinger::scientificSubscription(){
     m_client->subscribe(topicString);
 }
 
-void MqttHarbinger::cargoBayButtonPressed (int id){
+void MqttHarbinger::cargoBayButtonPressed (int id, int value){
     QString topic = "scientific/cargoBay/" + QString::number(id) + "/open";
-    m_client->publish(topic, "testMessage", 2);
-    emit scientific_cargoBayTemperatureEvent (id, 2*id);
+    m_client->publish(topic, 0, 2);
 }

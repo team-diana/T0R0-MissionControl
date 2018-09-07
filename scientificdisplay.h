@@ -27,10 +27,11 @@ public slots:
     void drillWeightUpdate(int ID, float weight);
     void proximityArmSensorUpdate(float armSenqsorValue);
     void proximityTurretSensorUpdate(float turretSensorValue);
-    void cargoBayButtonPressed(int id);
+    void proximityEndEffectorUpdate(float endEffectorValue);
+    void cargoBayButtonPressed(int id, int value);
 
 signals:
-    void cargoBayButtonPressedUpdate(int id);
+    void cargoBayButtonPressedUpdate(int id, int value);
 
 protected:
     void paintEvent (QPaintEvent *event) Q_DECL_OVERRIDE;

@@ -81,6 +81,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     connect(m_mqttHarbinger, &MqttHarbinger::scientific_drillWeightEvent,           scienceDisplay, &ScientificDisplay::drillWeightUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityArmSensorEvent,    scienceDisplay, &ScientificDisplay::proximityArmSensorUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityTurretSensorEvent, scienceDisplay, &ScientificDisplay::proximityTurretSensorUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityEndEffectorEvent, scienceDisplay, &ScientificDisplay::proximityEndEffectorUpdate);
     connect(scienceDisplay,  &ScientificDisplay::cargoBayButtonPressedUpdate,       m_mqttHarbinger, &MqttHarbinger::cargoBayButtonPressed);
 }
 

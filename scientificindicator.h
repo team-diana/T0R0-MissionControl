@@ -31,13 +31,14 @@ public slots:
     void buttonPressed();
 
 signals:
-    void cargoBayButtonPressedEventUpdate (int id);
+    void cargoBayButtonPressedEventUpdate (int id, int value);
 
 private:
     int id;
     float weight;
     float humidity;
     float temperature;
+    int status;
 
 };
 
@@ -65,6 +66,7 @@ public:
     explicit  ProximitySensorIndicator(QWidget *parent = nullptr);
     void setArmSensor(float _armSensor);
     void setTurretSensor(float _turretSensor);
+    void setEndEffectorSensor(float _endEffectorSensor);
 
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
@@ -72,6 +74,7 @@ protected:
 private:
     float armSensor;
     float turretSensor;
+    float endEffector;
 };
 
 #endif // SCIENTIFICINDICATOR_H

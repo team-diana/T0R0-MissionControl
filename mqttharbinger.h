@@ -38,10 +38,11 @@ signals:
     void scientific_drillWeightEvent (int ID, float weight);
     void scientific_proximityArmSensorEvent (float value);
     void scientific_proximityTurretSensorEvent (float value);
+    void scientific_proximityEndEffectorEvent (float value);
 
 public slots:
 
-    void cargoBayButtonPressed (int id);
+    void cargoBayButtonPressed (int id, int value);
 
 private:
 

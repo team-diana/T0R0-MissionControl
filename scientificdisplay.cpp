@@ -14,9 +14,8 @@ ScientificDisplay::ScientificDisplay(QWidget *parent) : QWidget(parent) {
 
 }
 
-void ScientificDisplay::cargoBayButtonPressed(int id){
-    emit cargoBayButtonPressedUpdate(id);
-    cargoBayHumidityUpdate(id, 4);
+void ScientificDisplay::cargoBayButtonPressed(int id, int value){
+    emit cargoBayButtonPressedUpdate(id, value);
 }
 
 void ScientificDisplay::cargoBayWeightUpdate(int ID, float weight){
@@ -47,6 +46,12 @@ void ScientificDisplay::proximityArmSensorUpdate(float armSensorValue){
 void ScientificDisplay::proximityTurretSensorUpdate(float turretSensorValue){
     qDebug() << "PROXIMITY_SENSOR" << " [TURRET_SENSOR] > " << turretSensorValue;
     proxInd->setTurretSensor(turretSensorValue);
+}
+
+
+void ScientificDisplay::proximityEndEffectorUpdate(float endEffectorValue){
+    qDebug() << "PROXIMITY_SENSOR" << " [END_EFFECTOR] > " << endEffectorValue;
+    proxInd->setEndEffectorSensor(endEffectorValue);
 }
 
 void ScientificDisplay::paintEvent (QPaintEvent *){

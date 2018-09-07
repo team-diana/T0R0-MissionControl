@@ -11,6 +11,7 @@ CargoBayIndicator::CargoBayIndicator(QWidget *parent, int id) : QWidget(parent){
     this->humidity = 0;
     this->temperature = 0;
     this->weight = 0;
+    this->status = 0;
 }
 
 void CargoBayIndicator::paintEvent(QPaintEvent *event){
@@ -49,6 +50,11 @@ void CargoBayIndicator::paintEvent(QPaintEvent *event){
     painter.drawText(QRect(110, 50, 220, 65), Qt::AlignLeft, ValueString);
 
     button = new QPushButton("OPEN", this);
+    if(status == 0){
+        button->setText("OPEN");
+    } else {
+        button->setText("CLOSE");
+    }
     button->setGeometry(QRect(QPoint(10, 70), QSize(CARGO_BAY_INDICATOR_DISPLAY_WIDTH - 20, 30)));
     button->show();
     connect(button, SIGNAL (pressed()), this, SLOT (buttonPressed()));
@@ -56,7 +62,12 @@ void CargoBayIndicator::paintEvent(QPaintEvent *event){
 
 void CargoBayIndicator::buttonPressed(){
     qDebug() << "PRESSED_ " << id;
-    emit cargoBayButtonPressedEventUpdate(this->id);
+    if(status == 0){
+        status = 1;
+    } else {
+        status = 0;
+    }
+    emit cargoBayButtonPressedEventUpdate(this->id, status);
 }
 
 void CargoBayIndicator::setHumidity(float _humidity){
@@ -106,7 +117,6 @@ void DrillIndicator::paintEvent(QPaintEvent *event){
     painter.drawText(QRect(2, 20, 135, 20), Qt::AlignLeft, "WEIGHT");
     ValueString.sprintf("%5.3f", this->weight);
     painter.drawText(QRect(80, 20, 220, 65), Qt::AlignLeft, ValueString);
-
 }
 
 
@@ -123,6 +133,7 @@ void DrillIndicator::setWeight(float _weight){
 ProximitySensorIndicator::ProximitySensorIndicator(QWidget *parent) : QWidget(parent){
     this->armSensor = 0;
     this->turretSensor = 0;
+    this->endEffector = 0;
 }
 
 void ProximitySensorIndicator::setArmSensor(float _armSensor){
@@ -134,6 +145,12 @@ void ProximitySensorIndicator::setArmSensor(float _armSensor){
 void ProximitySensorIndicator::setTurretSensor(float _turretSensor){
     qDebug() << "turretSensor " << _turretSensor;
     this->turretSensor = _turretSensor;
+    this->update();
+}
+
+void ProximitySensorIndicator::setEndEffectorSensor(float _endEffectorSensor){
+    qDebug() << "endEffectorSensor " << _endEffectorSensor;
+    this->endEffector = _endEffectorSensor;
     this->update();
 }
 
@@ -163,5 +180,13 @@ void ProximitySensorIndicator::paintEvent(QPaintEvent *event){
     painter.setPen(QColor(222, 61, 25));
     painter.drawText(QRect(2, 35, 135, 20), Qt::AlignLeft, "TURRET SENSOR");
     ValueString.sprintf("%5.3f", this->turretSensor);
-    painter.drawText(QRect(140, 35, 220, 65), Qt::AlignLeft, ValueString);
+    painter.drawText(QRect(140, 35, 220, 65), Qt::AlignLeft, ValueString);    
+
+
+    ValueString.begin();
+    qDebug() << "ENDEFFECTOR_SENSOR " << this->endEffector;
+    painter.setPen(QColor(222, 61, 25));
+    painter.drawText(QRect(2, 50, 135, 20), Qt::AlignLeft, "END EFFECTOR");
+    ValueString.sprintf("%5.3f", this->endEffector);
+    painter.drawText(QRect(140, 50, 220, 65), Qt::AlignLeft, ValueString);
 }
