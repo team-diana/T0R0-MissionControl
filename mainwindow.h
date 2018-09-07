@@ -18,6 +18,7 @@
 #include "ultrasonicdisplay.h"
 #include "vescdisplay.h"
 #include "scientificdisplay.h"
+#include "scientificindicator.h"
 
 #include <QLabel>
 

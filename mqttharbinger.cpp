@@ -86,6 +86,7 @@ void MqttHarbinger::testMqtt ()
     batterySubscription();
     ultrasonicSensorSubscription();
     vescSubscription();
+    scientificSubscription();
 
     QString connectionMessage = "["
             + QDateTime::currentDateTime().toString()
@@ -116,4 +117,10 @@ void MqttHarbinger::batterySubscription ()
 void MqttHarbinger::scientificSubscription(){
     QString topicString("scientific/#");
     m_client->subscribe(topicString);
+}
+
+void MqttHarbinger::cargoBayButtonPressed (int id){
+    QString topic = "scientific/cargoBay/" + QString::number(id) + "/open";
+    m_client->publish(topic, "testMessage", 2);
+    emit scientific_cargoBayTemperatureEvent (id, 2*id);
 }

@@ -41,6 +41,7 @@ signals:
 
 public slots:
 
+    void cargoBayButtonPressed (int id);
 
 private:
 
