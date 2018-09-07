@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPainter>
 #include "scientificindicator.h"
+#include <QCoreApplication>
 
 #define SCIENTIFIC_DISPLAY_POSX 58
 #define SCIENTIFIC_DISPLAY_POSY 500
@@ -17,6 +18,7 @@ class ScientificDisplay : public QWidget
 public:
     explicit ScientificDisplay(QWidget *parent = nullptr);
 
+
 public slots:
 
     void cargoBayWeightUpdate(int ID, float weight);
@@ -25,6 +27,10 @@ public slots:
     void drillWeightUpdate(int ID, float weight);
     void proximityArmSensorUpdate(float armSenqsorValue);
     void proximityTurretSensorUpdate(float turretSensorValue);
+    void cargoBayButtonPressed(int id);
+
+signals:
+    void cargoBayButtonPressedUpdate(int id);
 
 protected:
     void paintEvent (QPaintEvent *event) Q_DECL_OVERRIDE;

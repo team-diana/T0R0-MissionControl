@@ -56,6 +56,7 @@ void CargoBayIndicator::paintEvent(QPaintEvent *event){
 
 void CargoBayIndicator::buttonPressed(){
     qDebug() << "PRESSED_ " << id;
+    emit cargoBayButtonPressedEventUpdate(this->id);
 }
 
 void CargoBayIndicator::setHumidity(float _humidity){

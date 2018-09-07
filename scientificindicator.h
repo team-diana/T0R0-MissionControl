@@ -30,6 +30,9 @@ protected:
 public slots:
     void buttonPressed();
 
+signals:
+    void cargoBayButtonPressedEventUpdate (int id);
+
 private:
     int id;
     float weight;

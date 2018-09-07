@@ -5,11 +5,18 @@ ScientificDisplay::ScientificDisplay(QWidget *parent) : QWidget(parent) {
     int i;
     for(i=0; i<3; i++){
         cargoInd[i] = new CargoBayIndicator(this, i);
+        connect(cargoInd[i], &CargoBayIndicator::cargoBayButtonPressedEventUpdate, this, &ScientificDisplay::cargoBayButtonPressed);
     }
     for(i=0; i<2; i++){
         drillInd[i] = new DrillIndicator(this, i);
     }
     proxInd = new ProximitySensorIndicator(this);
+
+}
+
+void ScientificDisplay::cargoBayButtonPressed(int id){
+    emit cargoBayButtonPressedUpdate(id);
+    cargoBayHumidityUpdate(id, 4);
 }
 
 void ScientificDisplay::cargoBayWeightUpdate(int ID, float weight){
@@ -63,3 +70,4 @@ void ScientificDisplay::paintEvent (QPaintEvent *){
     drillInd[1]->setGeometry(360,180,DRILL_INDICATOR_DISPLAY_WIDTH+2, DRILL_INDICATOR_DISPLAY_HEIGHT+2);
     proxInd->setGeometry(150,180, PROXIMITY_SENSOR_INDICATOR_DISPLAY_WIDTH+2, PROXIMITY_SENSOR_INDICATOR_DISPLAY_HEIGHT+2);
 }
+
