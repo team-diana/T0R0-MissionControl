@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.4.0] - 2018-09-09
+### Added
+- Scientific data display
+    - 3x Cargo bays (weight, temperature, humidity)
+    - Drill (weight)
+    - Proximity Sensors (arm, turret, end effector)
+- Open/Close Buttons for carbo bays
+
 ## [v0.3.0] - 2018-09-02
 ### Added
 - Battery telemetry
