@@ -39,6 +39,7 @@ signals:
     void scientific_proximityArmSensorEvent (float value);
     void scientific_proximityTurretSensorEvent (float value);
     void scientific_proximityEndEffectorEvent (float value);
+    void position_change_event(int x, int y);
 
 public slots:
 

@@ -28,7 +28,8 @@ SOURCES += \
         *.cpp
 
 HEADERS += \
-        *.h
+        *.h \
+    map2d.h
 
 FORMS += \
         mainwindow.ui

@@ -78,11 +78,11 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
 void MqttHarbinger::testMqtt ()
 {
     qDebug() << "MQTT CONNESSO";
-    QString diagnosticsTopic ("diagnostics");
-    // auto subscription = m_client->subscribe(diagnosticsTopic);
-    // if (!subscription) {
-    //     qDebug() << "Error: MQTT subscription";
-    // }
+    QString batterytopicstring ("diagnostics");
+    auto subscription = m_client->subscribe(batterytopicstring);
+    if (!subscription) {
+        qDebug() << "Error: MQTT subscription";
+    }
 
     batterySubscription();
     ultrasonicSensorSubscription();
@@ -93,7 +93,7 @@ void MqttHarbinger::testMqtt ()
             + QDateTime::currentDateTime().toString()
             + "] Mission Control: Connesso al Broker MQTT";
 
-    if (m_client->publish(diagnosticsTopic, connectionMessage.toUtf8()) == -1) qDebug() << "MQTT PUBLISH ERROR";
+    if (m_client->publish(batterytopicstring, connectionMessage.toUtf8()) == -1) qDebug() << "MQTT PUBLISH ERROR";
     else qDebug() << "MQTT PUBLISHED";
 }
 

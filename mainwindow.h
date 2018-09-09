@@ -19,6 +19,7 @@
 #include "vescdisplay.h"
 #include "scientificdisplay.h"
 #include "scientificindicator.h"
+#include "map2d.h"
 
 #include <QLabel>
 
@@ -58,6 +59,7 @@ private:
     RadioDisplay *radiodisplay;
     VescDisplay *vescDisplay;
     ScientificDisplay *scienceDisplay;
+    Map2d *map2d;
 
 };
 
