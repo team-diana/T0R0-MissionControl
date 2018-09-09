@@ -51,6 +51,25 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
                 else if (query.at(2) == "temperature_mos1")     emit vescTemperature_mos1Event (query.at(1).toInt(), message.toFloat());
                 else if (query.at(2) == "temperature_motor")    emit vescTemperature_motorEvent (query.at(1).toInt(), message.toFloat());
             }
+            else if (query.at(0) == "scientific")
+            {
+                if(query.at(1) == "cargoBay")
+                {
+                    if(query.at(3) == "temperature")            emit scientific_cargoBayTemperatureEvent (query.at(2).toInt(), message.toFloat());
+                    else if(query.at(3) == "humidity")          emit scientific_cargoBayHumidityEvent (query.at(2).toInt(), message.toFloat());
+                    else if(query.at(3) == "weight")            emit scientific_cargoBayWeightEvent (query.at(2).toInt(), message.toFloat());
+                }
+                else if(query.at(1) == "drill")
+                {
+                    if(query.at(3) == "weight")                 emit scientific_drillWeightEvent (query.at(2).toInt(), message.toFloat());
+                }
+                else if(query.at(1) == "proximitySensor")
+                {
+                    if(query.at(2) == "armSensor" && query.at(3) == "weight")           emit scientific_proximityArmSensorEvent (message.toFloat());
+                    else if(query.at(2) == "turretSensor" && query.at(3) == "weight")   emit scientific_proximityTurretSensorEvent (message.toFloat());
+                    else if(query.at(2) == "endEffector" && query.at(3) == "weight")    emit scientific_proximityEndEffectorEvent (message.toFloat());
+                }
+            }
 
     });
 
@@ -68,6 +87,7 @@ void MqttHarbinger::testMqtt ()
     batterySubscription();
     ultrasonicSensorSubscription();
     vescSubscription();
+    scientificSubscription();
 
     QString connectionMessage = "["
             + QDateTime::currentDateTime().toString()
@@ -93,29 +113,14 @@ void MqttHarbinger::batterySubscription ()
 {
     QString topicString("battery/#");
     m_client->subscribe(topicString);
+}
 
-    /*int i, j;
-    QString batterytopicstring;
-    QString argumentsArray[4] = {
-        "charge",
-        "voltage",
-        "temperature",
-        "current"
-    };
+void MqttHarbinger::scientificSubscription(){
+    QString topicString("scientific/#");
+    m_client->subscribe(topicString);
+}
 
-    for (i=1; i<=5; i++)
-    {
-        for (j=0; j<4; j++)
-        {
-            batterytopicstring = "battery/"
-                    + QString::number(i)
-                    + "/"
-                    + argumentsArray[j];
-
-            auto subscription = m_client->subscribe(batterytopicstring);
-            if (!subscription) {
-                qDebug() << "ERROR: MQTT subscription on Topic[" << batterytopicstring << "]";
-            } else qDebug() << "OK: MQTT: subscribed on Topic[" << batterytopicstring << "]";
-        }
-    }*/
+void MqttHarbinger::cargoBayButtonPressed (int id, int value){
+    QString topic = "scientific/cargoBay/" + QString::number(id) + "/open";
+    m_client->publish(topic, 0, 2);
 }

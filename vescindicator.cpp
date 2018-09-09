@@ -10,7 +10,6 @@ vescIndicator::vescIndicator(QWidget *parent, int id) : QWidget(parent){
     this->voltage_input = 0;
     this->temperature_motor = 0;
 }
-//branch scientific
 void vescIndicator::paintEvent(QPaintEvent *event){
     QPainter painter(this);
     painter.fillRect(QRect(0, 0, VESC_INDICATOR_DISPLAY_WIDTH, VESC_INDICATOR_DISPLAY_HEIGHT), QColor(10,10,10,255));
