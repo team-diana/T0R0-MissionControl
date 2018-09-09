@@ -48,8 +48,10 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     autosysdisplay = new AutoSysDisplay(this);
     autosysdisplay->setGeometry(AUTOSYS_DISPLAY_POSX, AUTOSYS_DISPLAY_POSY, AUTOSYS_DISPLAY_WIDTH + 2, AUTOSYS_DISPLAY_HEIGHT + 2);
 
-    radiodisplay = new RadioDisplay(this);
-    radiodisplay->setGeometry(RADIO_DISPLAY_POSX, RADIO_DISPLAY_POSY, RADIO_DISPLAY_WIDTH + 2, RADIO_DISPLAY_HEIGHT + 2);
+   // radiodisplay = new RadioDisplay(this);
+   // radiodisplay->setGeometry(RADIO_DISPLAY_POSX, RADIO_DISPLAY_POSY, RADIO_DISPLAY_WIDTH + 2, RADIO_DISPLAY_HEIGHT + 2);
+    map2d = new Map2d(this);
+    map2d->setGeometry(MAP2D_POSX, MAP2D_POSY, MAP2D_WIDTH, MAP2D_HEIGTH);
 
     allsysdisplay = new AllSysDisplay(this);
     allsysdisplay->setGeometry( ((this->width() / 2) - (ALLSYS_DISPLAY_WIDTH / 2)), ALLSYS_DISPLAY_POSY, ALLSYS_DISPLAY_WIDTH + 2, ALLSYS_DISPLAY_HEIGHT + 2);
@@ -81,7 +83,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     connect(m_mqttHarbinger, &MqttHarbinger::scientific_drillWeightEvent,           scienceDisplay, &ScientificDisplay::drillWeightUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityArmSensorEvent,    scienceDisplay, &ScientificDisplay::proximityArmSensorUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityTurretSensorEvent, scienceDisplay, &ScientificDisplay::proximityTurretSensorUpdate);
-    connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityEndEffectorEvent, scienceDisplay, &ScientificDisplay::proximityEndEffectorUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityEndEffectorEvent,  scienceDisplay,  &ScientificDisplay::proximityEndEffectorUpdate);
+    connect(m_mqttHarbinger, &MqttHarbinger::position_change_event,                       map2d,          &Map2d::addPoint);
     connect(scienceDisplay,  &ScientificDisplay::cargoBayButtonPressedUpdate,       m_mqttHarbinger, &MqttHarbinger::cargoBayButtonPressed);
 }
 
