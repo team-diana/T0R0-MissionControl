@@ -9,7 +9,8 @@
 #include "colors.h"
 
 #define BAT_DISPLAY_POSX 1500
-#define BAT_DISPLAY_POSY 370
+// #define BAT_DISPLAY_POSY 370
+#define BAT_DISPLAY_POSY 50
 #define BAT_DISPLAY_WIDTH 334
 #define BAT_DISPLAY_HEIGHT 285
 
