@@ -45,13 +45,17 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     //statusdisplay->setGeometry(STATUS_DISPLAY_POSX, STATUS_DISPLAY_POSY, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
     //statusdisplay->setGeometry(STATUS_DISPLAY_POSX, (this->height() - STATUS_DISPLAY_HEIGHT) / 2, STATUS_DISPLAY_WIDTH + 2, STATUS_DISPLAY_HEIGHT + 2);
 
-    autosysdisplay = new AutoSysDisplay(this);
-    autosysdisplay->setGeometry(AUTOSYS_DISPLAY_POSX, AUTOSYS_DISPLAY_POSY, AUTOSYS_DISPLAY_WIDTH + 2, AUTOSYS_DISPLAY_HEIGHT + 2);
+    // autosysdisplay = new AutoSysDisplay(this);
+    // autosysdisplay->setGeometry(AUTOSYS_DISPLAY_POSX, AUTOSYS_DISPLAY_POSY, AUTOSYS_DISPLAY_WIDTH + 2, AUTOSYS_DISPLAY_HEIGHT + 2);
 
-   // radiodisplay = new RadioDisplay(this);
-   // radiodisplay->setGeometry(RADIO_DISPLAY_POSX, RADIO_DISPLAY_POSY, RADIO_DISPLAY_WIDTH + 2, RADIO_DISPLAY_HEIGHT + 2);
+    // radiodisplay = new RadioDisplay(this);
+    // radiodisplay->setGeometry(RADIO_DISPLAY_POSX, RADIO_DISPLAY_POSY, RADIO_DISPLAY_WIDTH + 2, RADIO_DISPLAY_HEIGHT + 2);
+
     map2d = new Map2d(this);
     map2d->setGeometry(MAP2D_POSX, MAP2D_POSY, MAP2D_WIDTH, MAP2D_HEIGTH);
+
+    odomDisplay = new OdomDisplay(this);
+    odomDisplay->setGeometry(ODOM_DISPLAY_POSX, ODOM_DISPLAY_POSY, ODOM_DISPLAY_WIDTH+2, ODOM_DISPLAY_HEIGHT+2);
 
     allsysdisplay = new AllSysDisplay(this);
     allsysdisplay->setGeometry( ((this->width() / 2) - (ALLSYS_DISPLAY_WIDTH / 2)), ALLSYS_DISPLAY_POSY, ALLSYS_DISPLAY_WIDTH + 2, ALLSYS_DISPLAY_HEIGHT + 2);
@@ -93,13 +97,13 @@ MainWindow::~MainWindow(){
 
 void MainWindow::keyPressEvent (QKeyEvent *k) {
     switch ( tolower(char(k->key())) ) {
-            case 'r':                               // reload
-                qDebug("Pressed R");//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
-                update();
-                break;
-            case 'q':                               // quit//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
-              qDebug("Pressed Q: Quitting application");
-              QCoreApplication::quit();
-                break;
-        }
+        case 'r':                               // reload
+        qDebug("Pressed R");//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
+        update();
+        break;
+        case 'q':                               // quit//void keyPressEvent(QKeyEvent *k) Q_DECL_OVERRIDE;
+        qDebug("Pressed Q: Quitting application");
+        QCoreApplication::quit();
+        break;
+    }
 }
