@@ -90,6 +90,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
     connect(m_mqttHarbinger, &MqttHarbinger::scientific_proximityEndEffectorEvent,  scienceDisplay,  &ScientificDisplay::proximityEndEffectorUpdate);
     connect(m_mqttHarbinger, &MqttHarbinger::position_change_event,                       map2d,          &Map2d::addPoint);
     connect(scienceDisplay,  &ScientificDisplay::cargoBayButtonPressedUpdate,       m_mqttHarbinger, &MqttHarbinger::cargoBayButtonPressed);
+    connect(m_mqttHarbinger, &MqttHarbinger::odometryEvent,                  odomDisplay, &OdomDisplay::odometryUpdate);
 }
 
 MainWindow::~MainWindow(){

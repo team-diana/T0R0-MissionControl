@@ -8,15 +8,13 @@
 
 OdomDisplay::OdomDisplay(QWidget *parent) : QWidget(parent)
 {
-	float x, y, z, pitch, roll, yaw;
+    x=0, y=0, z=0, pitch=0, roll=0, yaw=0;
 }
 
 OdomDisplay::~OdomDisplay()
 {
 
 }
-
-
 
 void OdomDisplay::paintEvent(QPaintEvent *)
 {
@@ -79,4 +77,50 @@ void OdomDisplay::paintEvent(QPaintEvent *)
     painter.drawText(QRect(110, 75, 135, 20), Qt::AlignLeft, "Yaw");
     // ValueString.sprintf("%5.3f", yaw);
     painter.drawText(QRect(210, 35, 220, 65), Qt::AlignLeft, ValueString);
+}
+
+void OdomDisplay::odometryUpdate(QString type, float value)
+{
+	if (type == "x") this->setX(value);
+	else if (type == "y") this->setY(value);
+	else if (type == "z") this->setZ(value);
+	else if (type == "pitch") this->setPitch(value);
+	else if (type == "roll") this->setRoll(value);
+	else if (type == "yaw") this->setYaw(value);
+}
+
+void OdomDisplay::setX(float value)
+{
+    this->x = value;
+	this->update();
+}
+
+void OdomDisplay::setY(float value)
+{
+    this->y = value;
+	this->update();
+}
+
+void OdomDisplay::setZ(float value)
+{
+    this->z = value;
+	this->update();
+}
+
+void OdomDisplay::setPitch(float value)
+{
+    this->pitch = value;
+	this->update();
+}
+
+void OdomDisplay::setRoll(float value)
+{
+    this->roll = value;
+	this->update();
+}
+
+void OdomDisplay::setYaw(float value)
+{
+    this->yaw = value;
+	this->update();
 }

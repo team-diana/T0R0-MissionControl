@@ -17,13 +17,22 @@ public:
     explicit OdomDisplay(QWidget *parent = nullptr);
 	~OdomDisplay();
 
-	signals:
+	void setX(float value);
+	void setY(float value);
+	void setZ(float value);
+	void setPitch(float value);
+	void setRoll(float value);
+	void setYaw(float value);
 
-	public slots:
+signals:
+
+public slots:
+    void odometryUpdate (QString, float value);
 
 protected:
 	void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 private:
+    float x, y, z, pitch, roll, yaw;
 };
 
 #endif // ODOMSDISPLAY_H
