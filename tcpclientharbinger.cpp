@@ -35,7 +35,7 @@ void TcpClientHarbinger::run () {
 
 
     //* TCP LOOP *//
-    if (DEBUG_TCP) qDebug() << "TcoHarbinger: Starting Loop";
+    if (DEBUG_TCP) qDebug() << "TcpHarbinger: Starting Loop";
     while (m_loop)  // Loop -> if  m_loop = true
     {
         for (int i=0; i < nConnections; i++)      // Read data array and send trough TCP
@@ -62,7 +62,7 @@ void TcpClientHarbinger::run () {
         }
         usleep(100000); // Microseconds
     }
-    if (DEBUG_TCP) qDebug() << "TcoHarbinger: Loop Terminated";
+    if (DEBUG_TCP) qDebug() << "TcpHarbinger: Loop Terminated";
 }
 
 void TcpClientHarbinger::stopLoop()
