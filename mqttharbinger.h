@@ -13,7 +13,6 @@ public:
     explicit MqttHarbinger(QWidget *parent = nullptr);
     void testMqtt();
     void batterySubscription();
-    void odometrySubscription();
     void ultrasonicSensorSubscription();
     void vescSubscription();
     void scientificSubscription();
@@ -26,7 +25,6 @@ signals:
     void batteryTemperatureEvent (int idCell, float value);
     void batteryVoltageEvent (int idCell, float value);
     void batteryCurrentEvent (int idCell, float value);
-    void odometryEvent (QString type, float value);
     void ultrasonicSensorStatusEvent (int sensorID, int status);
     void vescErpmEvent (int vescID, float erpm);
     void vescCurrent_motorEvent (int vescID, float current_motor);
