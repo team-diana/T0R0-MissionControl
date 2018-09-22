@@ -70,11 +70,9 @@ MqttHarbinger::MqttHarbinger(QWidget *parent) : QWidget(parent)
                     else if(query.at(2) == "endEffector" && query.at(3) == "weight")    emit scientific_proximityEndEffectorEvent (message.toFloat());
                 }
             }
-            else if (query.at(0) == "odom")
-            {
-                emit odometryEvent (query.at(1), message.toFloat());
-            }
+
     });
+
 }
 
 void MqttHarbinger::testMqtt ()
@@ -105,11 +103,6 @@ void MqttHarbinger::ultrasonicSensorSubscription()
     m_client->subscribe(topicString);
 }
 
-void MqttHarbinger::odometrySubscription()
-{
-    QString topicString("odom/#");
-    m_client->subscribe(topicString);
-}
 
 void MqttHarbinger::vescSubscription(){
     QString topicString("vesc/#");

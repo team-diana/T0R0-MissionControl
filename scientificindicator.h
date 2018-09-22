@@ -7,7 +7,7 @@
 #include <QPushButton>
 
 #define CARGO_BAY_INDICATOR_DISPLAY_WIDTH 150
-#define CARGO_BAY_INDICATOR_DISPLAY_HEIGHT 140
+#define CARGO_BAY_INDICATOR_DISPLAY_HEIGHT 110
 #define DRILL_INDICATOR_DISPLAY_WIDTH 130
 #define DRILL_INDICATOR_DISPLAY_HEIGHT 80
 #define PROXIMITY_SENSOR_INDICATOR_DISPLAY_WIDTH 200
@@ -28,8 +28,7 @@ protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 
 public slots:
-    void buttonOpenPressed();
-    void buttonClosePressed();
+    void buttonPressed();
 
 signals:
     void cargoBayButtonPressedEventUpdate (int id, int value);

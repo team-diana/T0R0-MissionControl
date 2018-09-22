@@ -5,22 +5,21 @@
 
 #include "mqttharbinger.h"
 
-#include "allsystemsdisplay.h"
-#include "autosysdisplay.h"
+#include "rovershow.h"
+#include "startbutton.h"
 #include "batteryindicator.h"
 #include "batterypanel.h"
 #include "batterydisplay.h"
-#include "imagebutton.h"
-#include "map2d.h"
-#include "odometrydisplay.h"
-#include "radiodisplay.h"
-#include "rovershow.h"
-#include "startbutton.h"
 #include "statusdisplay.h"
-#include "scientificdisplay.h"
-#include "scientificindicator.h"
+#include "imagebutton.h"
+#include "autosysdisplay.h"
+#include "radiodisplay.h"
+#include "allsystemsdisplay.h"
 #include "ultrasonicdisplay.h"
 #include "vescdisplay.h"
+#include "scientificdisplay.h"
+#include "scientificindicator.h"
+#include "map2d.h"
 
 #include <QLabel>
 
@@ -35,7 +34,7 @@ class MainWindow : public QWidget
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();\
+    ~MainWindow();
 
 public slots:
 
@@ -47,22 +46,20 @@ private:
 
     MqttHarbinger *m_mqttHarbinger;
 
-    QLabel *pixlabel;
-
     // Custom elements
-    AllSysDisplay *allsysdisplay;
-    AutoSysDisplay *autosysdisplay;
-    BatteryDisplay *batterydisplay;
-    BatteryPanel *batterypanel1;
-    Map2d *map2d;
-    OdomDisplay *odomDisplay;
-    RadioDisplay *radiodisplay;
-    RoverShow *rover;
-    ScientificDisplay *scienceDisplay;
-    StartButton *start_button;
-    StatusDisplay *statusdisplay;
     UltrasonicDisplay *usDisplay;
+    AllSysDisplay *allsysdisplay;
+    StartButton *start_button;
+    RoverShow *rover;
+    BatteryPanel *batterypanel1;
+    BatteryDisplay *batterydisplay;
+    StatusDisplay *statusdisplay;
+    QLabel *pixlabel;
+    AutoSysDisplay *autosysdisplay;
+    RadioDisplay *radiodisplay;
     VescDisplay *vescDisplay;
+    ScientificDisplay *scienceDisplay;
+    Map2d *map2d;
 
 };
 

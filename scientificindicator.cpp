@@ -50,24 +50,24 @@ void CargoBayIndicator::paintEvent(QPaintEvent *event){
     painter.drawText(QRect(110, 50, 220, 65), Qt::AlignLeft, ValueString);
 
     button = new QPushButton("OPEN", this);
+    if(status == 0){
+        button->setText("OPEN");
+    } else {
+        button->setText("CLOSE");
+    }
     button->setGeometry(QRect(QPoint(10, 70), QSize(CARGO_BAY_INDICATOR_DISPLAY_WIDTH - 20, 30)));
     button->show();
-    connect(button, SIGNAL (pressed()), this, SLOT (buttonOpenPressed()));
-
-    button = new QPushButton("CLOSE", this);
-    button->setGeometry(QRect(QPoint(10, 105), QSize(CARGO_BAY_INDICATOR_DISPLAY_WIDTH - 20, 30)));
-    button->show();
-    connect(button, SIGNAL (pressed()), this, SLOT (buttonClosePressed()));
+    connect(button, SIGNAL (pressed()), this, SLOT (buttonPressed()));
 }
 
-void CargoBayIndicator::buttonOpenPressed(){
-    qDebug() << "PRESSED_OPEN";
-    emit cargoBayButtonPressedEventUpdate(this->id, 1);
-}
-
-void CargoBayIndicator::buttonClosePressed(){
-    qDebug() << "PRESSED_OPEN";
-    emit cargoBayButtonPressedEventUpdate(this->id, 0);
+void CargoBayIndicator::buttonPressed(){
+    qDebug() << "PRESSED_ " << id;
+    if(status == 0){
+        status = 1;
+    } else {
+        status = 0;
+    }
+    emit cargoBayButtonPressedEventUpdate(this->id, status);
 }
 
 void CargoBayIndicator::setHumidity(float _humidity){
